@@ -1,0 +1,195 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/css/rtl/core.css"/>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/css/rtl/theme-default.css"/>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/fonts/tabler-icons.css">
+    <!--    <link rel="stylesheet" href="/fontawesome/css/all.min.css">-->
+    <!--    <link rel="stylesheet" href="/styles.css">-->
+
+    <style>
+        .borderRadiusMy {
+            border-radius: 0 5px 5px 0;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: space-between; /* Простір між зображеннями */
+            align-items: center; /* Вирівнювання зображень по вертикалі */
+        }
+
+        .image-container img {
+            max-width: 100%; /* Максимальна ширина не більше ніж ширина батьківського елемента */
+            max-height: 150px; /* Максимальна висота */
+            width: 48%; /* Дві картинки займають приблизно по 48% ширини кожна */
+        }
+        .borderMy li{
+            border: 0;
+        }
+
+        .iconMy {
+            font-size: xxx-large;
+             /* Синій фон, що відповідає кольору Facebook */
+            color: white; /* Біла буква "f" */
+            padding: 10px; /* Додає внутрішній відступ */
+            border-radius: 50%; /* Робить іконку круглою */
+            width: 60px; /* Ширина і висота блоку для створення квадратної іконки */
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+
+    <!-- Layout container -->
+    <div class="layout-container">
+
+        <!-- Navbar -->
+        <div th:insert="~{blocks/navbar::navbar}"></div>
+        <!--/ Navbar -->
+        <!-- Navbar -->
+        <div th:insert="~{blocks/navbar2::navbar2}"></div>
+        <!--/ Navbar -->
+
+        <!-- Layout page -->
+        <div class="layout-page">
+
+            <!-- Sidebar -->
+            <div class="flex-shrink-1 flex-grow-0 w-px-350 container-p-x container-p-y"
+                 style="border-right: solid 1px #e3e1e1;">
+                <div th:replace="~{blocks/sidebar::sidebar}"></div>
+            </div>
+            <!--/ Sidebar -->
+
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+                <!-- Content -->
+                <div class="container-xxl d-flex align-items-stretch flex-grow-1 p-0">
+                    <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
+                        <div class="row row-cols-5" id="posterFilms_"></div>
+                    </div>
+                </div>
+                <!--/ Content -->
+
+                <!-- Footer -->
+                <footer class="content-footer footer bg-footer-theme">
+                    <div class="container-xxl">
+                        Footer
+                        <div class="row">
+                            <div class="col-3">
+                                <h5>Мобільна програма</h5>
+                                <div class="image-container">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTKM3ZIW9ButXhwHvQh2-OT8GauA9_Njaq5Q08P9qVw2pTHwitzSzoCWFwGXpUeAwcSQ&amp;usqp=CAU"
+                                         alt="error">
+                                    <img src="https://www.gov.br/pt-br/imagens-de-servicos/apple.png" alt="error">
+                                </div>
+                                <p style="font-size: smaller;">Розробка сайтов: AVADA-MEDIA</p>
+                            </div>
+                            <div class="col-2">
+                                <ul class="list-group borderMy">
+                                    <li class="list-group-item" style="font-size: large;">Афіша</li>
+                                    <li class="list-group-item">Розклад</li>
+                                    <li class="list-group-item">Скоро в прокаті</li>
+                                    <li class="list-group-item">Кінотетари</li>
+                                    <li class="list-group-item">Акції</li>
+                                </ul>
+                            </div>
+                            <div class="col-2">
+                                <ul class="list-group borderMy">
+                                    <li class="list-group-item" style="font-size: large;">Про кінотеатр</li>
+                                    <li class="list-group-item">Новини</li>
+                                    <li class="list-group-item">Реклама</li>
+                                    <li class="list-group-item">Кафе-Бар</li>
+                                    <li class="list-group-item">
+                                        <Контакти></Контакти>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="row col">
+                                <div class="col d-flex justify-content-center align-items-start">
+                                    <i class="ti ti-brand-facebook iconMy" style="background-color: #1877F2;"></i>
+                                </div>
+                                <div class="col d-flex justify-content-center align-items-start">
+                                    <i class="ti ti-brand-twitter iconMy" style="background: #00acee;"></i>
+                                </div>
+                                <div class="col d-flex justify-content-center align-items-start">
+                                    <i class="ti ti-brand-telegram iconMy" style="background: #0088cc;"></i>
+                                </div>
+                                <div class="col d-flex justify-content-center align-items-start">
+                                    <i class="ti ti-brand-instagram iconMy" style="background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4);"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </footer>
+                <!--/ Footer -->
+
+            </div>
+            <!--/ Content wrapper -->
+        </div>
+        <!--/ Layout page -->
+    </div>
+    <!--/ Layout container -->
+</div>
+<!--/ Layout wrapper -->
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<script src="/vuexy/assets/vendor/js/helpers.js"></script>
+<script src="/vuexy/assets/js/config.js"></script>
+<script src="/vuexy/assets/vendor/js/dropdown-hover.js"></script>
+<script src="/vuexy/dist/js/bootstrap.js"></script>
+
+<script>
+    function render(array) {
+        let posterElement = document.getElementById("posterFilms_");
+        array.forEach(function (element) {
+            posterElement.insertAdjacentHTML("beforeend", getBlockFilm(element));
+        });
+    }
+
+    function getBlockFilm(object) {
+        return `<div style="width: auto">
+                                <p class="text-center mb-0">${object.dateStart} - ${object.dateEnd}</p>
+                                <img src="${object.nameImage !== null ? object.pathToImage :
+            'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'}"
+                                     class="card-img-top" alt="..."
+                                     style="width: 200px;height: 300px;">
+                                <div class="text-center mt-3">
+                                    <h5>${object.title}</h5>
+                                    <a href="/user/film/${object.id}/buy" class="btn btn-vimeo" style="width:75%;">
+                                        <i class="ti ti-coin" style="margin-right: 5px;"></i>Купити</a>
+                                </div>
+                            </div>`;
+    }
+</script>
+<script>
+    window.addEventListener("DOMContentLoaded", function () {
+        requestPosterData();
+        const currentPathSite = window.location.pathname;
+        if (currentPathSite === '/user/poster') {
+            document.getElementById("btnPosterSidebar_").classList.add("active");
+            document.getElementById("btnPosterHeader_").classList.add("active");
+        }
+    });
+
+    function requestPosterData() {
+        const request = new XMLHttpRequest();
+        request.open("GET", "/user/poster/data");
+        request.send();
+        request.addEventListener("load", function () {
+            if (request.status === 200) {
+                let data = JSON.parse(request.response);
+                console.log(data);
+                render(data);
+            }
+        });
+    }
+</script>
+</body>
+</html>

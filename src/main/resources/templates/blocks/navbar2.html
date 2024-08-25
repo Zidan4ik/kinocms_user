@@ -1,0 +1,28 @@
+<nav th:fragment="navbar2" class="navbar navbar-light bg-white">
+    <div class="container-fluid justify-content-center">
+        <div class="btn-group" role="group" aria-label="Basic outlined example" style="width: 100%">
+            <button type="button" class="btn btn-outline-secondary" id="btnPosterHeader_">Афіша</button>
+            <button type="button" class="btn btn-outline-secondary">Розклад</button>
+            <button type="button" class="btn btn-outline-secondary">Скоро</button>
+            <button type="button" class="btn btn-outline-secondary">Кінотеатри</button>
+            <button type="button" class="btn btn-outline-secondary">Акції</button>
+            <div class="dropdown-center">
+                <button class="btn btn-outline-secondary dropdown-toggle borderRadiusMy" type="button" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Про кінотеатр
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="javascript:void(0);">Новини</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);">Реклама</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);">Кафе</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);">Мобільна програма</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);">Контакти</a></li>
+                </ul>
+            </div>
+            <select class="form-select" aria-label="Default select example" style="width: auto;margin-left: 10px;">
+                <option value="uk">укр</option>
+                <option value="en">анг</option>
+            </select>
+        </div>
+    </div>
+</nav>
