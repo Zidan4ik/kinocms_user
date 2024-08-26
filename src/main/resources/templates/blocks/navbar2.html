@@ -1,16 +1,21 @@
 <nav th:fragment="navbar2" class="navbar navbar-light bg-white">
     <div class="container-fluid justify-content-center">
         <div class="btn-group" role="group" aria-label="Basic outlined example" style="width: 100%">
-            <button type="button" class="btn btn-outline-secondary" id="btnPosterHeader_">Афіша</button>
-            <button type="button" class="btn btn-outline-secondary">Розклад</button>
-            <button type="button" class="btn btn-outline-secondary">Скоро</button>
-            <button type="button" class="btn btn-outline-secondary">Кінотеатри</button>
-            <button type="button" class="btn btn-outline-secondary">Акції</button>
+            <a href="/user/poster"
+                    type="button" class="btn btn-outline-secondary" id="btnPosterHeader_">Афіша</a>
+            <a type="button" class="btn btn-outline-secondary">Розклад</a>
+            <a href="/user/soon"
+                    type="button" class="btn btn-outline-secondary" id="btnSoonHeader_">Скоро</a>
+            <a href="/user/cinema"
+                    type="button" class="btn btn-outline-secondary">Кінотеатри</a>
+            <a href="/user/share"
+                    type="button" class="btn btn-outline-secondary">Акції</a>
             <div class="dropdown-center">
-                <button class="btn btn-outline-secondary dropdown-toggle borderRadiusMy" type="button" id="dropdownMenuButton"
+                <a href="/user/cinema-about"
+                        class="btn btn-outline-secondary dropdown-toggle borderRadiusMy" type="button" id="dropdownMenuButton"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Про кінотеатр
-                </button>
+                </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <li><a class="dropdown-item" href="javascript:void(0);">Новини</a></li>
                     <li><a class="dropdown-item" href="javascript:void(0);">Реклама</a></li>

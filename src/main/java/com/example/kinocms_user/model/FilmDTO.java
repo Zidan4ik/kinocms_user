@@ -1,6 +1,5 @@
 package com.example.kinocms_user.model;
 
-import com.example.kinocms_user.entity.Mark;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,8 +15,10 @@ public class FilmDTO {
     private String nameImage;
     private String dateStart;
     private String dateEnd;
-    private List<Mark> marks;
-    public String getPathToImage(){
-        return "/uploads/films/main-image/"+id+"/"+nameImage;
+    private List<String> marks;
+
+    public String getPathToImage() {
+        return "/uploads/films/main-image/" + id + "/" + nameImage;
     }
 }
+

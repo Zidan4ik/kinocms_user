@@ -4,9 +4,7 @@ import com.example.kinocms_user.entity.Film;
 import com.example.kinocms_user.entity.Mark;
 import com.example.kinocms_user.entity.PageTranslation;
 import com.example.kinocms_user.model.FilmDTO;
-import org.springframework.cglib.core.Local;
 
-import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -21,14 +19,11 @@ public class FilmMapper {
         LocalDate inputDateEnd = LocalDate.parse(String.valueOf(film.getDateEnd()), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         dto.setDateStart(inputDateStart.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
         dto.setDateEnd(inputDateEnd.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
-        dto.setMarks(marks);
         dto.setNameImage(film.getNameImage());
+
+        dto.setMarks(marks.stream()
+                .map(Mark::getName)
+                .toList());
         return dto;
     }
-
-//    public List<FilmDTO> toDTOList(List<Film> films){
-//        return films.stream()
-//                .map(FilmMapper::toDTO)
-//                .toList();
-//    }
 }

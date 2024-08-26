@@ -1,0 +1,36 @@
+.iconMy {
+    font-size: xxx-large;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.iconMy {
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: white;
+}
+.iconMy:hover {
+    cursor: pointer;
+    color: #ffffff;
+}
+.ti-brand-twitter:hover{
+    background: #008cc1 !important;"
+}
+.ti-brand-facebook:hover{
+    background: #0056b3  !important;"
+}
+.ti-brand-telegram:hover{
+    background: #01699f !important;"
+}
+.ti-brand-instagram:hover{
+    background: linear-gradient(135deg, #854718, #7e1845, #481c61, #313880) !important;"
+}
+
+.btnBuyMy:hover{
+    cursor: pointer;
+    background: linear-gradient(180deg, #ffff00,#e2a431, orange) !important;
+}
