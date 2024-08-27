@@ -27,7 +27,7 @@ public class FilmController {
 
     @GetMapping("/poster")
     public String showPosterMovies() {
-        return "poster-page";
+        return "movie/poster-page";
     }
 
     @GetMapping("/poster/data")
@@ -45,7 +45,7 @@ public class FilmController {
 
     @GetMapping("/soon")
     public String showSoonMovies() {
-        return "soon-page";
+        return "movie/soon-page";
     }
 
     @GetMapping("/soon/data")
@@ -60,6 +60,5 @@ public class FilmController {
         }
         return dto;
     }
-
 }
 

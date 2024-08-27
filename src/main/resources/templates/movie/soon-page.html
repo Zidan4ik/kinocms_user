@@ -1,0 +1,161 @@
+    <!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="uk">
+    <head>
+        <th:block th:insert="blocks/links::links"></th:block>
+        <link rel="stylesheet" href="/style/icons.css">
+        <style>
+            .borderRadiusMy {
+                border-radius: 0 5px 5px 0;
+            }
+            .image-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .image-container img {
+                max-width: 100%;
+                max-height: 150px;
+                width: 48%;
+            }
+            .borderMy li {
+                border: 0;
+            }
+            .list-group-item {
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                padding: 10px 15px;
+            }
+            .list-group-item:hover {
+                cursor: pointer;
+                background-color: #f8f7fa;
+                color: #5d596c;
+                box-shadow: 0 1px 0 rgba(0, 0, 0, 1.2);
+            }
+            .titleMovieMy:hover{
+                cursor: pointer;
+                color: deepskyblue;
+            }
+        </style>
+    </head>
+
+    <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+
+        <!-- Layout container -->
+        <div class="layout-container">
+
+            <!-- Navbar -->
+            <div th:insert="~{blocks/navbar::navbar}"></div>
+            <!--/ Navbar -->
+            <!-- Navbar -->
+            <div th:insert="~{blocks/navbar2::navbar2}"></div>
+            <!--/ Navbar -->
+
+            <!-- Layout page -->
+            <div class="layout-page">
+
+                <!-- Sidebar -->
+                <div class="flex-shrink-1 flex-grow-0 w-px-350 container-p-x container-p-y"
+                     style="border-right: solid 1px #e3e1e1;">
+                    <div th:replace="~{blocks/sidebar::sidebar}"></div>
+                </div>
+                <!--/ Sidebar -->
+
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    <!-- Content -->
+                    <div class="container-xxl d-flex align-items-stretch flex-grow-1 p-0">
+                        <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
+                            <div class="row row-cols-5" id="posterFilms_"></div>
+                        </div>
+                    </div>
+                    <!--/ Content -->
+
+                    <!-- Footer -->
+                    <footer class="content-footer footer bg-footer-theme"
+                            style="border-top: solid 1px #c4c4c4;padding-top: 10px;"
+                            th:insert="~{blocks/footer::footer}">
+                    </footer>
+                    <!--/ Footer -->
+                </div>
+                <!--/ Content wrapper -->
+            </div>
+            <!--/ Layout page -->
+        </div>
+        <!--/ Layout container -->
+    </div>
+    <!--/ Layout wrapper -->
+
+    <th:block th:insert="blocks/links::scripts"></th:block>
+    <script src="/vuexy/assets/vendor/js/dropdown-hover.js"></script>
+
+    <script>
+        function render(array) {
+            let posterElement = document.getElementById("posterFilms_");
+            array.forEach(function (element) {
+                posterElement.insertAdjacentHTML("beforeend", getBlockFilm(element));
+            });
+        }
+
+        function getBlockFilm(object) {
+            return `<div style="width: auto">
+                                <p class="text-center mb-0">${object.dateStart} - ${object.dateEnd}</p>
+                                <img src="${object.nameImage !== null ? object.pathToImage :
+                'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'}"
+                                     class="card-img-top" alt="..."
+                                     style="width: 200px;height: 300px;">
+                                <div class="text-center mt-3">
+                                 <h5 onclick="followMoviesInfo(${object.id})" class="titleMovieMy">${object.title}</h5>
+                                    <a href="/user/film/${object.id}/buy" class="btn btn-vimeo btnBuyMy"
+                                        style="width:75%;background: linear-gradient(180deg, #fbfb25, #ffb93c, #ffaa15)">
+                                        <i class="ti ti-coin" style="margin-right: 5px;"></i>Купити</a>
+                                </div>
+                            </div>`;
+        }
+    </script>
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+            requestPosterData();
+            const currentPathSite = window.location.pathname;
+            if (currentPathSite === '/user/soon') {
+                document.getElementById("btnSoonSidebar_").classList.add("active");
+                document.getElementById("btnSoonHeader_").classList.add("active");
+            }
+        });
+        function requestPosterData() {
+            const request = new XMLHttpRequest();
+            request.open("GET", "/user/soon/data");
+            request.send();
+            request.addEventListener("load", function () {
+                if (request.status === 200) {
+                    let data = JSON.parse(request.response);
+                    console.log(data);
+                    render(data);
+                }
+            });
+        }
+    </script>
+    <script>
+        document.querySelectorAll(".list-group-item").forEach(function (input){
+            input.addEventListener('click',function(){
+                const link = input.querySelector('a');
+                if(link){
+                    window.location.href = link.href;
+                }
+            });
+        });
+
+        function followSite(link){
+            if(link){
+                window.location.replace(link);
+            }
+        }
+        function followMoviesInfo(id){
+            if(id){
+                window.location.replace("/user/movie/"+id);
+            }
+        }
+    </script>
+    </body>
+    </html>
+    
