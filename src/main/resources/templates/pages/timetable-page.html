@@ -102,6 +102,7 @@
                         <div class="row mt-3">
                             <div class="col-2"></div>
                             <div class="col-6">
+                                <span>1 вересня</span>
                                 <div class="table-responsive" style="border:solid 2px #b7b6c4">
                                     <table class="table">
                                         <thead>
@@ -158,5 +159,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/vuexy/assets/vendor/libs/select2/select2.js"></script>
 
+<script>
+    window.addEventListener('DOMContentLoaded',function (){
+        console.log(window.location.pathname);
+        if(window.location.pathname === '/user/timetable'){
+            let elementBtn = document.getElementById("btnTimetable_");
+            elementBtn.classList.add('active');
+        }
+    });
+</script>
 </body>
 </html>
