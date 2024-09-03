@@ -4,6 +4,7 @@ import com.example.kinocms_user.entity.Film;
 import com.example.kinocms_user.repository.FilmRepository;
 import com.example.kinocms_user.service.FilmService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -45,5 +46,9 @@ public class FilmServiceImp implements FilmService {
     @Override
     public Optional<Film> getById(Long id) {
         return filmRepository.findById(id);
+    }
+    @Override
+    public List<Film> getAllFilmsToday(){
+        return filmRepository.findAllByDateStartBeforeAndDateEndAfter(LocalDate.now(), LocalDate.now());
     }
 }

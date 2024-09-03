@@ -9,4 +9,5 @@ public interface FilmService {
     List<Film> findFilmsIsActive(boolean isActive);
     List<Film> getAll();
     Optional<Film> getById(Long id);
+    List<Film> getAllFilmsToday();
 }
