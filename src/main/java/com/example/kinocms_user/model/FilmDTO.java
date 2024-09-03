@@ -12,11 +12,17 @@ import java.util.List;
 public class FilmDTO {
     private Long id;
     private String title;
+    private String description;
     private String nameImage;
     private String dateStart;
     private String dateEnd;
     private List<String> marks;
-
+    private List<String> genres;
+    private List<GalleryDTO> galleries;
+    private String year;
+    private String budget;
+    private String time;
+    private String trailer;
     public String getPathToImage() {
         return "/uploads/films/main-image/" + id + "/" + nameImage;
     }

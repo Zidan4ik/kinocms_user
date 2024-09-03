@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -39,5 +40,10 @@ public class FilmServiceImp implements FilmService {
     @Override
     public List<Film> getAll() {
         return filmRepository.findAll();
+    }
+
+    @Override
+    public Optional<Film> getById(Long id) {
+        return filmRepository.findById(id);
     }
 }

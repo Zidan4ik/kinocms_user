@@ -10,10 +10,13 @@ import com.example.kinocms_user.service.FilmService;
 import com.example.kinocms_user.service.MarkService;
 import com.example.kinocms_user.service.PageTranslatorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
 
@@ -37,8 +40,7 @@ public class FilmController {
         List<FilmDTO> dto = new ArrayList<>();
         for (Film film : films) {
             Optional<PageTranslation> translation = pageTranslatorService.getFilm(film, LanguageCode.Ukr);
-            List<Mark> marks = markService.getAllByFilms(Collections.singletonList(film));
-            translation.ifPresent(pageTranslation -> dto.add(FilmMapper.toDTO(film, pageTranslation, marks)));
+            translation.ifPresent(pageTranslation -> dto.add(FilmMapper.toDTO(film, pageTranslation)));
         }
         return dto;
     }
@@ -55,10 +57,32 @@ public class FilmController {
         List<FilmDTO> dto = new ArrayList<>();
         for (Film film : films) {
             Optional<PageTranslation> translation = pageTranslatorService.getFilm(film, LanguageCode.Ukr);
-            List<Mark> marks = markService.getAllByFilms(Collections.singletonList(film));
-            translation.ifPresent(pageTranslation -> dto.add(FilmMapper.toDTO(film, pageTranslation, marks)));
+            translation.ifPresent(pageTranslation -> dto.add(FilmMapper.toDTO(film, pageTranslation)));
         }
         return dto;
     }
+
+    @GetMapping("/movie/{id}")
+    public ModelAndView showMovie(@PathVariable Long id) {
+        ModelAndView model = new ModelAndView("movie/movie-page");
+        model.addObject("id", id);
+        return model;
+    }
+
+    @GetMapping("/movie/{id}/data")
+    @ResponseBody
+    public FilmDTO getFilm(@PathVariable Long id) {
+        Optional<Film> filmById = filmService.getById(id);
+        if (filmById.isPresent()) {
+            Optional<PageTranslation> translatorUk = pageTranslatorService.getFilm(filmById.get(), LanguageCode.Ukr);
+            if (translatorUk.isPresent()) {
+                return FilmMapper.toDTO(filmById.get(), translatorUk.get());
+            }
+        }
+        return null;
+    }
+
 }
+
+
 

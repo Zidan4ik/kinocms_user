@@ -17,7 +17,7 @@ public class Gallery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String linkImage;
-    private com.example.kinocms_user.enums.GalleriesType type;
+    private GalleriesType type;
     @ManyToOne
     @JoinColumn(name = "film_id")
     private Film film;

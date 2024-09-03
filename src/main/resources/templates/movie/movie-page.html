@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="uk">
+<head>
+    <title>kinocms</title>
+
+    <th:block th:replace="blocks/links::links"/>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/libs/select2/select2.css"/>
+    <link rel="stylesheet" href="/style/icons.css"/>
+    <link rel="stylesheet" href="/styles.css"/>
+
+    <style>
+        .vdo-responsive-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+
+        .vdo-responsive-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-indicators li {
+            width: 10px !important;
+            height: 10px !important;
+            background-color: #333 !important;
+            border-radius: 50% !important;
+            margin: 0 5px !important;
+            border: none !important;
+        }
+
+        .carousel-indicators .active {
+            background-color: #fff !important;
+            width: 12px !important;
+            height: 12px !important;
+            border-radius: 50% !important;
+            border: none !important;
+        }
+    </style>
+    <style>
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        .custom-checkbox {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #000;
+            text-align: center;
+            line-height: 36px;
+            cursor: pointer;
+            font-weight: bold;
+            user-select: none;
+        }
+
+        input[type="checkbox"]:checked + .custom-checkbox {
+            background-color: #bcbcbc;
+            color: #fff;
+        }
+
+        .row li {
+            display: inline-block;
+        }
+    </style>
+    <style>
+        .block-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 150px;
+            height: 80px;
+            text-align: center;
+        }
+
+        td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        .time {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .hall {
+            font-size: 12px;
+        }
+
+        .day {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .month {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+
+    <!-- Layout container -->
+    <div class="layout-container">
+
+        <!-- Navbar -->
+        <div th:insert="~{blocks/navbar::navbar}"></div>
+        <!--/ Navbar -->
+        <!-- Navbar -->
+        <div th:insert="~{blocks/navbar2::navbar2}"></div>
+        <!--/ Navbar -->
+
+        <!-- Layout page -->
+        <div class="layout-page">
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+                <!-- Content -->
+                <div class="container-xxl d-flex align-items-stretch flex-grow-1 p-0">
+                    <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
+                        <div class="vdo-responsive-container">
+                            <iframe class="vdo-responsive-iframe"
+                                    width="866" height="487"
+                                    id="trailer_"
+                                    src="https://www.youtube.com/embed/JfVOs4VSpmA"
+                                    title="SPIDER-MAN: NO WAY HOME - Official Trailer (HD)"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="row mt-3">
+                            <label class="form-label col-6 d-flex justify-content-end"
+                                   style="font-size: 32px;">Розклад сеансів кінотеатрів:</label>
+                            <div class="mb-3 col-auto">
+                                <select class="select2 form-select form-select-lg"
+                                        data-allow-clear="true">
+                                    <option value="lviv">Львів</option>
+                                    <option value="rivne">Рівне</option>
+                                    <option value="kyiv">Київ</option>
+                                    <option value="odessa">Одеса</option>
+                                    <option value="zhytomyr">Житомир</option>
+                                </select>
+                            </div>
+                            <div class="col d-flex align-items-end" style="margin-bottom: 19px;">
+                                <ul style="list-style-type: none;padding: 0;margin: 0;display: flex;gap: 10px;">
+                                    <li>
+                                        <input type="checkbox" id="inputCheck_1">
+                                        <label for="inputCheck_1" class="custom-checkbox">Всі</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="inputCheck_2">
+                                        <label for="inputCheck_2" class="custom-checkbox">3D</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="inputCheck_3">
+                                        <label for="inputCheck_3" class="custom-checkbox">2D</label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="block-container mt-3 d-flex justify-content-center">
+                            <table>
+                                <tr>
+                                    <td class="day">27 ВТ</td>
+                                </tr>
+                                <tr>
+                                    <td class="month">Червня</td>
+                                </tr>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td class="day">28 СР</td>
+                                </tr>
+                                <tr>
+                                    <td class="month">Червня</td>
+                                </tr>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td class="day">29 ЧТ</td>
+                                </tr>
+                                <tr>
+                                    <td class="month">Червня</td>
+                                </tr>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td class="day">30 ПТ</td>
+                                </tr>
+                                <tr>
+                                    <td class="month">Червня</td>
+                                </tr>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td class="day">31 СБ</td>
+                                </tr>
+                                <tr>
+                                    <td class="month">Червня</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="block-container mt-3 d-flex justify-content-center">
+                            <table>
+                                <tr>
+                                    <td class="time" colspan="2">16:40</td>
+                                </tr>
+                                <tr>
+                                    <td class="hall">Зал 1</td>
+                                    <td>3D</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">23/56/120</td>
+                                </tr>
+                            </table>
+
+                            <table>
+                                <tr>
+                                    <td class="time" colspan="2">18:30</td>
+                                </tr>
+                                <tr>
+                                    <td class="hall">Зал 2</td>
+                                    <td>IMAX</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">45/100/200</td>
+                                </tr>
+                            </table>
+
+                            <table>
+                                <tr>
+                                    <td class="time" colspan="2">20:00</td>
+                                </tr>
+                                <tr>
+                                    <td class="hall">Зал 3</td>
+                                    <td>2D</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">30/80/150</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="col-6 d-flex flex-column align-items-center">
+                                <img id="movieImage_"
+                                     src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                                     alt="error" style="width: 50%;height: 100%;">
+                            </div>
+                            <div class="col-6 d-flex flex-column align-items-center">
+                                <a class="btn btn-outline-success" th:href="@{/user/movie/id/buy (id=${id})}">Купити
+                                    квиток</a>
+                                <h3 id="title_"></h3>
+                                <span class="align-self-start" id="description_"></span>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-6 d-flex flex-column align-items-center mt-5" id="table_">
+                            </div>
+                            <div class="col-6 d-flex flex-column align-items-center">
+                                <h3>Кадри і постери</h3>
+                                <div id="carouselExample" class="carousel slide col-md-8 offset-md-2"
+                                     data-bs-ride="false" style="margin-left: 0;">
+                                    <ol class="carousel-indicators" id="indicators_">
+                                    </ol>
+                                    <div class="carousel-inner" id="imageSliders_">
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExample" type="button"
+                                       data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExample" type="button"
+                                       data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <img src="https://i1.poltava.to/uploads/2021/09/2021-09-16/atb-amp.jpg"
+                                 alt="image error" style="width: 100%;height:50%;">
+                        </div>
+                        <input type="hidden" id="movieId_" th:value="${id}">
+                    </div>
+                </div>
+                <!--/ Content -->
+
+                <!-- Footer -->
+                <footer class="content-footer footer bg-footer-theme"
+                        style="border-top: solid 1px #c4c4c4;padding-top: 10px;"
+                        th:insert="~{blocks/footer::footer}">
+                </footer>
+                <!--/ Footer -->
+
+            </div>
+            <!--/ Content wrapper -->
+        </div>
+        <!--/ Layout page -->
+    </div>
+    <!--/ Layout container -->
+</div>
+<!--/ Layout wrapper -->
+
+<th:block th:insert="blocks/links::scripts"></th:block>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/vuexy/assets/vendor/libs/select2/select2.js"></script>
+
+<script>
+    document.querySelectorAll('input[type=checkbox]').forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+            if (this.checked) {
+                document.querySelectorAll('input[type=checkbox]').forEach(cb => {
+                    if (cb !== this) {
+                        cb.checked = false;
+                    }
+                });
+            }
+        });
+    });
+    function requestMovieData(id) {
+        let request = new XMLHttpRequest();
+        request.open("GET", `/user/movie/${id}/data`)
+        request.send();
+        request.addEventListener('load', function () {
+            if (request.status === 200) {
+                let data = JSON.parse(request.response);
+                console.log(data);
+                document.getElementById("trailer_").src = data.trailer;
+                document.getElementById("movieImage_").src = data.pathToImage;
+                document.getElementById("title_").value = data.title;
+                document.getElementById("description_").textContent = data.description;
+                createTableInformation(data.year, data.time, data.budget, data.genres);
+                createSlidersImage(data.galleries);
+            }
+        });
+    }
+    function createTableInformation(year, time, budget, genres) {
+        let genresLine = '';
+        genres.forEach(function (element, index) {
+            genresLine += element;
+            if (index < genres.length - 1) {
+                genresLine += ', ';
+            }
+        });
+        let tableElement = document.getElementById("table_");
+        tableElement.innerHTML =
+            '<div class="table-responsive" style="width: 70%">' +
+            '    <table class="table">' +
+            '        <tbody class="table-border-bottom-0">' +
+            '            <tr class="table-light">' +
+            '                <th>Рік</th>' +
+            '                <th>' + year + '</th>' +
+            '            </tr>' +
+            '            <tr class="table-dark">' +
+            '                <th>Жанр</th>' +
+            '                <th>' + genresLine + '</th>' +
+            '            </tr>' +
+            '            <tr class="table-light">' +
+            '                <th>Бюджет</th>' +
+            '                <th>' + budget + ' $</th>' +
+            '            </tr>' +
+            '            <tr class="table-dark">' +
+            '                <th>Час</th>' +
+            '                <th>' + time + '</th>' +
+            '            </tr>' +
+            '        </tbody>' +
+            '    </table>' +
+            '</div>';
+    }
+    function createSlidersImage(galleries) {
+        let indicatorsElement = document.getElementById("indicators_");
+        let imageSlidersElement = document.getElementById("imageSliders_");
+        galleries.forEach(function (element, index) {
+            const activeClass = index === 0 ? 'active' : '';
+            indicatorsElement.insertAdjacentHTML('beforeend', `<li data-bs-target="#carouselExample"
+                 data-bs-slide-to="${index}" class="${activeClass}"></li>`);
+            imageSlidersElement.insertAdjacentHTML('beforeend', `<div class="carousel-item ${activeClass}">
+                                            <img class="d-block w-100" src="${element.pathToImage}"
+                                                 alt="error" style="max-width: max-content;height: 400px;"/>
+                                        </div>`);
+        });
+    }
+</script>
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        let movieId = document.getElementById("movieId_").value;
+        requestMovieData(movieId);
+    });
+</script>
+</body>
+</html>
