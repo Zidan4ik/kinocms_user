@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class FilmMapper {
-    public static FilmDTO toDTO(Film film, PageTranslation translator,List<Mark> marks) {
+    public static FilmDTO toDTO(Film film, PageTranslation translator, List<Mark> marks) {
         FilmDTO dto = new FilmDTO();
         dto.setId(film.getId());
         dto.setTitle(translator.getTitle());
@@ -28,9 +28,11 @@ public class FilmMapper {
         dto.setGenres(film.getGenresList().stream()
                 .map(Genre::getName)
                 .toList());
-        dto.setMarks(marks.stream()
-                .map(Mark::getName)
-                .toList());
+        if (marks != null) {
+            dto.setMarks(marks.stream()
+                    .map(Mark::getName)
+                    .toList());
+        }
         dto.setGalleries(toDTOList(film.getGalleries()));
         return dto;
     }
@@ -41,7 +43,7 @@ public class FilmMapper {
         dto.setNameImage(gallery.getLinkImage());
         dto.setImageType(ImageType.galleries);
         dto.setGalleriesType(GalleriesType.films);
-        dto.setPathToImage("/uploads/" + GalleriesType.films + "/" + ImageType.galleries + "/" + gallery.getFilm().getId()   + "/" + gallery.getLinkImage());
+        dto.setPathToImage("/uploads/" + GalleriesType.films + "/" + ImageType.galleries + "/" + gallery.getFilm().getId() + "/" + gallery.getLinkImage());
         return dto;
     }
 

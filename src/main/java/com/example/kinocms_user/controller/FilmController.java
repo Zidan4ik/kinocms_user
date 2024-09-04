@@ -99,6 +99,20 @@ public class FilmController {
         model.addObject("filmsToday", filmDTOS);
         return model;
     }
+    @GetMapping("/movie/{id}/buy")
+    public ModelAndView showBuyMovie(@PathVariable Long id) {
+        ModelAndView model = new ModelAndView("pages/movie-buy-page");
+        Optional<Film> movieById = filmService.getById(id);
+        FilmDTO filmDTO = null;
+        if(movieById.isPresent()){
+            Optional<PageTranslation> translatorUKR = pageTranslatorService.getFilm(movieById.get(), LanguageCode.Ukr);
+            if(translatorUKR.isPresent()){
+                filmDTO = FilmMapper.toDTO(movieById.get(), translatorUKR.get(),null);
+            }
+        }
+        model.addObject("movie",filmDTO);
+        return model;
+    }
 }
 
 
