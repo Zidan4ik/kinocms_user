@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="uk">
+<head>
+    <title>kinocms</title>
+    <th:block th:replace="blocks/links::links"/>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/libs/select2/select2.css"/>
+    <link rel="stylesheet" href="/style/icons.css"/>
+    <link rel="stylesheet" href="/styles.css"/>
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+
+    <!-- Layout container -->
+    <div class="layout-container">
+
+        <!-- Navbar -->
+        <div th:insert="~{blocks/navbar::navbar}"></div>
+        <!--/ Navbar -->
+        <!-- Navbar -->
+        <div th:insert="~{blocks/navbar2::navbar2}"></div>
+        <!--/ Navbar -->
+
+        <!-- Layout page -->
+        <div class="layout-page">
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+                <!-- Content -->
+                <div class="container-xxl d-flex align-items-stretch flex-grow-1 p-0">
+                    <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
+                        <input type="hidden" th:value="${id}" id="id_">
+                    </div>
+                </div>
+                <!--/ Content -->
+            </div>
+            <!--/ Content wrapper -->
+        </div>
+        <!--/ Layout page -->
+
+        <!-- Footer -->
+        <footer class="content-footer footer bg-footer-theme"
+                style="border-top: solid 1px #c4c4c4;padding-top: 10px;"
+                th:insert="~{blocks/footer::footer}">
+        </footer>
+        <!--/ Footer -->
+    </div>
+    <!--/ Layout container -->
+</div>
+<!--/ Layout wrapper -->
+
+<th:block th:insert="blocks/links::scripts"></th:block>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+    function requestCinemas(id) {
+        let request = new XMLHttpRequest();
+        request.open("GET", `/user/cinema/${id}/data`)
+        request.send();
+        request.addEventListener('load', function () {
+            let data = JSON.parse(request.response);
+            console.log(data);
+        });
+    }
+
+    window.addEventListener('DOMContentLoaded',function (){
+        const id = document.getElementById("id_").value;
+        requestCinemas(id);
+    });
+</script>
+</body>
+</html>

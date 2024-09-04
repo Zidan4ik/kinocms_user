@@ -1,5 +1,6 @@
 package com.example.kinocms_user.service.serviceImp;
 
+import com.example.kinocms_user.entity.Cinema;
 import com.example.kinocms_user.entity.Film;
 import com.example.kinocms_user.entity.PageTranslation;
 import com.example.kinocms_user.enums.LanguageCode;
@@ -17,5 +18,10 @@ public class PageTranslationServiceImp implements PageTranslatorService {
     @Override
     public Optional<PageTranslation> getFilm(Film film, LanguageCode code) {
         return pageTranslatorRepository.getPageTranslationByFilmAndLanguageCode(film,code);
+    }
+
+    @Override
+    public Optional<PageTranslation> getCinema(Cinema cinema, LanguageCode code) {
+        return pageTranslatorRepository.getPageTranslationByCinemaAndLanguageCode(cinema,code);
     }
 }
