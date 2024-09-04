@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="uk">
+<head>
+    <title>kinocms</title>
+    <th:block th:replace="blocks/links::links"/>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/libs/select2/select2.css"/>
+    <link rel="stylesheet" href="/style/icons.css"/>
+    <link rel="stylesheet" href="/styles.css"/>
+
+    <style>
+        .box-shadow {
+            display: inline-block;
+            background-color: #fff;
+            margin: 10px;
+            transition: box-shadow 0.3s ease;
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        }
+
+        .box-shadow:hover {
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+    </style>
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+
+    <!-- Layout container -->
+    <div class="layout-container">
+
+        <!-- Navbar -->
+        <div th:insert="~{blocks/navbar::navbar}"></div>
+        <!--/ Navbar -->
+        <!-- Navbar -->
+        <div th:insert="~{blocks/navbar2::navbar2}"></div>
+        <!--/ Navbar -->
+
+        <!-- Layout page -->
+        <div class="layout-page">
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+                <!-- Content -->
+                <div class="container-xxl d-flex align-items-stretch flex-grow-1 p-0">
+                    <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
+                        <div>
+                            <img src="https://i.pinimg.com/736x/6e/72/56/6e7256cd3b093b4c16672fc245c0761e.jpg"
+                                 alt="error" style="width: 100%; height: 300px;">
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-8">
+                                <h3 class="text-center">Наші кінотеатри</h3>
+                                <div class="row row-cols-2" id="cinemas_">
+                                </div>
+                            </div>
+                            <div class="col text-center">
+                                <img src="https://st.weblancer.net/download/3155678_935xp.jpg"
+                                     alt="error" style="width: 80%; height: 600px;">
+                                <img class="mt-5"
+                                     src="https://bit.ua/wp-content/uploads/2016/12/Cola.jpg"
+                                     alt="error" style="width: 80%; height: 400px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Content -->
+            </div>
+            <!--/ Content wrapper -->
+        </div>
+        <!--/ Layout page -->
+
+        <!-- Footer -->
+        <footer class="content-footer footer bg-footer-theme"
+                style="border-top: solid 1px #c4c4c4;padding-top: 10px;"
+                th:insert="~{blocks/footer::footer}">
+        </footer>
+        <!--/ Footer -->
+    </div>
+    <!--/ Layout container -->
+</div>
+<!--/ Layout wrapper -->
+
+<th:block th:insert="blocks/links::scripts"></th:block>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+    function requestCinemas() {
+        let request = new XMLHttpRequest();
+        request.open("GET", "/user/cinemas-data")
+        request.send();
+        request.addEventListener('load', function () {
+            let data = JSON.parse(request.response);
+            console.log(data);
+            renderCinema(data);
+        });
+    }
+
+    function renderCinema(array) {
+        let cinemasElement = document.getElementById("cinemas_");
+
+        array.forEach(function (element) {
+            cinemasElement.insertAdjacentHTML('beforeend', getCinema(element));
+        });
+    }
+
+    function getCinema(object) {
+        return `<div class="col">
+                <a href="/user/cinema/${object.id}">
+                <img class="box-shadow" src="${object.pathToLogo}" alt="error" style="width: 100%;height: 300px;">
+                </a>
+                <span class="d-flex justify-content-center" style="font-weight: bold;color:black;">${object.nameCinema}</span>
+            </div>`;
+    }
+
+
+    window.addEventListener('DOMContentLoaded', function () {
+        requestCinemas();
+    })
+</script>
+</body>
+</html>
