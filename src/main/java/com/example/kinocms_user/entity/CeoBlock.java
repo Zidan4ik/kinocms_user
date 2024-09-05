@@ -38,6 +38,7 @@ public class CeoBlock {
     private Share share;
     @ManyToOne
     private Page page;
+
     public CeoBlock(LanguageCode languageCode, PageType pageType, String title, String keywords, String descriptions, Film film) {
         this.languageCode = languageCode;
         this.pageType = pageType;

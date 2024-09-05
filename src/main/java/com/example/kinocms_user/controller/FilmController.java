@@ -26,6 +26,7 @@ public class FilmController {
     private final FilmService filmService;
     private final PageTranslatorService pageTranslatorService;
     private final MarkService markService;
+
     @GetMapping("/poster")
     public String showPosterMovies() {
         return "pages/poster-page";
@@ -39,7 +40,7 @@ public class FilmController {
         for (Film film : films) {
             Optional<PageTranslation> translation = pageTranslatorService.getFilm(film, LanguageCode.Ukr);
             List<Mark> marks = markService.getAllByFilms(Collections.singletonList(film));
-            translation.ifPresent(pageTranslation -> dto.add(FilmMapper.toDTO(film, pageTranslation,marks)));
+            translation.ifPresent(pageTranslation -> dto.add(FilmMapper.toDTO(film, pageTranslation, marks)));
         }
         return dto;
     }
@@ -57,7 +58,7 @@ public class FilmController {
         for (Film film : films) {
             Optional<PageTranslation> translation = pageTranslatorService.getFilm(film, LanguageCode.Ukr);
             List<Mark> marks = markService.getAllByFilms(Collections.singletonList(film));
-            translation.ifPresent(pageTranslation -> dto.add(FilmMapper.toDTO(film, pageTranslation,marks)));
+            translation.ifPresent(pageTranslation -> dto.add(FilmMapper.toDTO(film, pageTranslation, marks)));
 
         }
         return dto;
@@ -78,7 +79,7 @@ public class FilmController {
             Optional<PageTranslation> translatorUk = pageTranslatorService.getFilm(filmById.get(), LanguageCode.Ukr);
             if (translatorUk.isPresent()) {
                 List<Mark> marks = markService.getAllByFilms(Collections.singletonList(filmById.get()));
-                return FilmMapper.toDTO(filmById.get(), translatorUk.get(),marks);
+                return FilmMapper.toDTO(filmById.get(), translatorUk.get(), marks);
             }
         }
         return null;
@@ -90,29 +91,31 @@ public class FilmController {
         List<FilmDTO> filmDTOS = new ArrayList<>();
         for (Film film : filmService.getAllFilmsToday()) {
             Optional<PageTranslation> translatorUKR = pageTranslatorService.getFilm(film, LanguageCode.Ukr);
-            if(translatorUKR.isPresent()){
+            if (translatorUKR.isPresent()) {
                 List<Mark> marks = markService.getAllByFilms(Collections.singletonList(film));
-                FilmDTO filmDTO = FilmMapper.toDTO(film, translatorUKR.get(),marks);
+                FilmDTO filmDTO = FilmMapper.toDTO(film, translatorUKR.get(), marks);
                 filmDTOS.add(filmDTO);
             }
         }
         model.addObject("filmsToday", filmDTOS);
         return model;
     }
+
     @GetMapping("/movie/{id}/buy")
     public ModelAndView showBuyMovie(@PathVariable Long id) {
         ModelAndView model = new ModelAndView("pages/movie-buy-page");
         Optional<Film> movieById = filmService.getById(id);
         FilmDTO filmDTO = null;
-        if(movieById.isPresent()){
+        if (movieById.isPresent()) {
             Optional<PageTranslation> translatorUKR = pageTranslatorService.getFilm(movieById.get(), LanguageCode.Ukr);
-            if(translatorUKR.isPresent()){
-                filmDTO = FilmMapper.toDTO(movieById.get(), translatorUKR.get(),null);
+            if (translatorUKR.isPresent()) {
+                filmDTO = FilmMapper.toDTO(movieById.get(), translatorUKR.get(), null);
             }
         }
-        model.addObject("movie",filmDTO);
+        model.addObject("movie", filmDTO);
         return model;
     }
+
 }
 
 

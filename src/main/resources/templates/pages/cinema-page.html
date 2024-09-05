@@ -29,6 +29,83 @@
                 <!-- Content -->
                 <div class="container-xxl d-flex align-items-stretch flex-grow-1 p-0">
                     <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
+                        <div class="mt-3">
+                            <img id="banner_"
+                                 src="https://cdn.vectorstock.com/i/500p/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg"
+                                 alt="error" width="100%" height="400px">
+                            <div class="row mt-5">
+                                <div class="col-3">
+                                    <img src="https://newspaperads.ads2publish.com/wp-content/uploads/2021/04/mercedes-benz-unstoppable-just-like-you-ad-times-of-india-delhi-16-04-2021.jpg"
+                                         alt="error" width="100%" height="400px">
+                                    <div class="mt-3">
+                                        <p class="d-flex justify-content-center" id="hallsCount_" style="font-size: x-large;"></p>
+                                        <ul class="list-group" id="halls_">
+                                        </ul>
+                                    </div>
+                                    <div class="mt-3 mb-3">
+                                        <p class="d-flex justify-content-center" style="font-size: x-large;">Дивимось сьогодні:</p>
+                                        <ul class="list-group" id="sessions_">
+                                            <li class="list-group-item">Сеанс 1</li>
+                                            <li class="list-group-item">Сеанс 2</li>
+                                            <li class="list-group-item">Сеанс 3</li>
+                                            <li class="list-group-item">Сеанс 4</li>
+                                            <li class="list-group-item">Сеанс 5</li>
+                                            <li class="list-group-item">Сеанс 6</li>
+                                        </ul>
+                                    </div>
+                                    <div class="mt-3 text-center">
+                                        <a href="/user/timetable" class="btn btn-outline-success" style="background: azure;width: 80%;">Розклад
+                                            сеансів</a>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="row">
+                                        <div class="col-6 text-center">
+                                            <p id="title_"
+                                               style="font-size: 26px;"></p>
+                                            <img id="logo_"
+                                                 src="https://cdn.vectorstock.com/i/500p/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg"
+                                                 alt="error" width="50%" height="150px">
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="/user/timetable"
+                                               class="btn btn-outline-success" style="background: azure;">Розклад
+                                                сеансів</a>
+                                            <div class="d-flex mt-1 gap-3" id="marks_"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <span id="description_">На сайті кінотеатру Планета Кіно Львів (Leoland) ти зможеш знайти актуальний розклад найгучніших всесвітніх і українських кінопрем’єр, придбати квитки та індивідуальні 3D-окуляри. Дивись фільми у найкращій якості у найкомфортабельніших кінозалах кіноресторану RE’LUX. Можна замовити до зали піцу, вкритися ковдрою і насолоджуватися кіно, наче ти вдома. Можна розкласти крісло і дати відпочити своїм ногам. А ще, завдяки вбудованим планшетам, можна замовити іжу та напої ні з ким не розмовляючи. У RE'LUX ти можеш перекусити або повноцінно повечеряти. В меню є хумус і фалафель, азіатський стейк, антібургер, рієт з лосося і безліч інших страв. Та головне, усі їх зручно істи руками. Замовляй страви до зали або смакуй в лаунжі перед сеансом</span>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <h4 class="text-center">Умови</h4>
+                                        <span class="container" id="condition_"></span>
+                                    </div>
+                                    <div class="mt-3">
+                                        <h4 class="text-center">
+                                            Фотогалерея
+                                        </h4>
+                                        <div id="carouselExample" class="carousel slide col-md-8 offset-md-2"
+                                             data-bs-ride="false">
+                                            <ol class="carousel-indicators" id="indicators_">
+                                            </ol>
+                                            <div class="carousel-inner" id="imageSliders_">
+                                            </div>
+                                            <a class="carousel-control-prev" href="#carouselExample" type="button"
+                                               data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next" href="#carouselExample" type="button"
+                                               data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <input type="hidden" th:value="${id}" id="id_">
                     </div>
                 </div>
@@ -51,7 +128,61 @@
 
 <th:block th:insert="blocks/links::scripts"></th:block>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    const badges = ['bg-primary', 'bg-facebook', 'bg-slack', 'bg-success', 'bg-warning'];
 
+    function renderMarks(array) {
+        const marksElement = document.getElementById("marks_");
+        array.forEach(function (element) {
+            const randomIndex = Math.floor(Math.random() * badges.length);
+            marksElement.insertAdjacentHTML('beforeend',
+                `<span class="badge rounded-pill ${badges[randomIndex]} bg-glow">${element}</span>`)
+            const newBadges = badges.filter(item => item !== badges[randomIndex]);
+            badges.length = 0;
+            badges.push(...newBadges);
+        });
+    }
+
+    function createConditionContainer(text) {
+        const sections = text.trim().split(/\n(?=[^\n]+:)/); // Розбиває текст на заголовки і значення
+        const container = document.getElementById('condition_');
+        container.classList.add('row', 'row-cols-2');
+        sections.forEach(section => {
+            const [header, ...bodyLines] = section.split('\n');
+            const div = document.createElement('div');
+            div.classList.add('col');
+            const headerElement = document.createElement('p');
+            headerElement.innerHTML = `<strong style="color: deepskyblue;border-bottom: solid 1px deepskyblue">${header}</strong>`;
+            div.appendChild(headerElement);
+            const bodyElement = document.createElement('p');
+            bodyElement.style.color = 'black';
+            bodyElement.textContent = bodyLines.join('\n').trim();
+            div.appendChild(bodyElement);
+            container.appendChild(div);
+        });
+    }
+
+    function createSlidersImage(galleries) {
+        let indicatorsElement = document.getElementById("indicators_");
+        let imageSlidersElement = document.getElementById("imageSliders_");
+        galleries.forEach(function (element, index) {
+            const activeClass = index === 0 ? 'active' : '';
+            indicatorsElement.insertAdjacentHTML('beforeend', `<li data-bs-target="#carouselExample"
+                 data-bs-slide-to="${index}" class="${activeClass}"></li>`);
+            imageSlidersElement.insertAdjacentHTML('beforeend', `<div class="carousel-item ${activeClass}">
+                                            <img class="d-block w-100" src="${element.pathToImage}"
+                                                 alt="error" style="max-width: 100%;height: 400px;"/>
+                                        </div>`);
+        });
+    }
+
+    function createGroupHalls(halls) {
+        const hallsElement = document.getElementById("halls_");
+        halls.forEach(function (element) {
+            hallsElement.insertAdjacentHTML('beforeend', `<a href="/user/hall/${element.id}"><li class="list-group-item">${element.number}</li></a>`)
+        });
+    }
+</script>
 <script>
     function requestCinemas(id) {
         let request = new XMLHttpRequest();
@@ -60,10 +191,19 @@
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);
             console.log(data);
+            document.getElementById("title_").textContent = data.nameCinema;
+            document.getElementById("logo_").src = data.pathToLogo;
+            document.getElementById("banner_").src = data.pathToBanner;
+            document.getElementById("description_").value = data.description;
+            renderMarks(data.marks);
+            createConditionContainer(data.condition);
+            createSlidersImage(data.galleryDTOS);
+            createGroupHalls(data.hallDTOS);
+            document.getElementById("hallsCount_").textContent = "Кількість залів: "+data.hallDTOS.length;
         });
     }
 
-    window.addEventListener('DOMContentLoaded',function (){
+    window.addEventListener('DOMContentLoaded', function () {
         const id = document.getElementById("id_").value;
         requestCinemas(id);
     });

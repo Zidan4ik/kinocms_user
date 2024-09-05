@@ -17,10 +17,10 @@ public class CinemaDTO {
     private String nameLogo;
     private String nameBanner;
     private String nameCinema;
-    private List<Hall> halls;
+    private List<HallDTO> hallDTOS;
     private String description;
     private String condition;
-    private Set<Mark> marks;
+    private Set<String> marks;
     private List<GalleryDTO> galleryDTOS;
 
     public String getPathToLogo() {

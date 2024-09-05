@@ -33,23 +33,7 @@ public class FilmMapper {
                     .map(Mark::getName)
                     .toList());
         }
-        dto.setGalleries(toDTOList(film.getGalleries()));
+        dto.setGalleries(GalleryMapper.toDTOList(film.getGalleries(), film.getId(),GalleriesType.films));
         return dto;
-    }
-
-    private static GalleryDTO toDTO(Gallery gallery) {
-        GalleryDTO dto = new GalleryDTO();
-        dto.setId(gallery.getId());
-        dto.setNameImage(gallery.getLinkImage());
-        dto.setImageType(ImageType.galleries);
-        dto.setGalleriesType(GalleriesType.films);
-        dto.setPathToImage("/uploads/" + GalleriesType.films + "/" + ImageType.galleries + "/" + gallery.getFilm().getId() + "/" + gallery.getLinkImage());
-        return dto;
-    }
-
-    private static List<GalleryDTO> toDTOList(List<Gallery> galleries) {
-        return galleries.stream()
-                .map(FilmMapper::toDTO)
-                .toList();
     }
 }
