@@ -30,7 +30,7 @@ public class CinemaController {
     private final PageTranslatorService pageTranslatorService;
     @GetMapping("/cinemas")
     public String showCinemas() {
-        return "pages/cinemas-page";
+        return "pages/cinemas";
     }
 
     @GetMapping("/cinemas-data")
@@ -41,7 +41,7 @@ public class CinemaController {
 
     @GetMapping("/cinema/{id}")
     public ModelAndView showCinema(@PathVariable(name = "id") Long id) {
-        ModelAndView model = new ModelAndView("pages/cinema-page");
+        ModelAndView model = new ModelAndView("pages/cinema");
         model.addObject("id", id);
         return model;
     }

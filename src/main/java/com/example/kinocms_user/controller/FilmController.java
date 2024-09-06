@@ -29,7 +29,7 @@ public class FilmController {
 
     @GetMapping("/poster")
     public String showPosterMovies() {
-        return "pages/poster-page";
+        return "pages/poster";
     }
 
     @GetMapping("/poster/data")
@@ -47,7 +47,7 @@ public class FilmController {
 
     @GetMapping("/soon")
     public String showSoonMovies() {
-        return "pages/soon-page";
+        return "pages/soon";
     }
 
     @GetMapping("/soon/data")
@@ -66,7 +66,7 @@ public class FilmController {
 
     @GetMapping("/movie/{id}")
     public ModelAndView showMovie(@PathVariable Long id) {
-        ModelAndView model = new ModelAndView("pages/movie-page");
+        ModelAndView model = new ModelAndView("pages/movie");
         model.addObject("id", id);
         return model;
     }
@@ -87,7 +87,7 @@ public class FilmController {
 
     @GetMapping("/timetable")
     public ModelAndView showTimetable() {
-        ModelAndView model = new ModelAndView("pages/timetable-page");
+        ModelAndView model = new ModelAndView("pages/timetable");
         List<FilmDTO> filmDTOS = new ArrayList<>();
         for (Film film : filmService.getAllFilmsToday()) {
             Optional<PageTranslation> translatorUKR = pageTranslatorService.getFilm(film, LanguageCode.Ukr);
@@ -103,7 +103,7 @@ public class FilmController {
 
     @GetMapping("/movie/{id}/buy")
     public ModelAndView showBuyMovie(@PathVariable Long id) {
-        ModelAndView model = new ModelAndView("pages/movie-buy-page");
+        ModelAndView model = new ModelAndView("pages/movie-buy");
         Optional<Film> movieById = filmService.getById(id);
         FilmDTO filmDTO = null;
         if (movieById.isPresent()) {
@@ -115,7 +115,6 @@ public class FilmController {
         model.addObject("movie", filmDTO);
         return model;
     }
-
 }
 
 

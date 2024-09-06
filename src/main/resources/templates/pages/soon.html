@@ -1,6 +1,7 @@
     <!DOCTYPE html>
     <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="uk">
     <head>
+        <title>kinocms</title>
         <th:block th:insert="blocks/links::links"></th:block>
         <link rel="stylesheet" href="/style/icons.css">
         <style>
@@ -106,7 +107,7 @@
                                      style="width: 200px;height: 300px;">
                                 <div class="text-center mt-3">
                                  <h5 onclick="followMoviesInfo(${object.id})" class="titleMovieMy">${object.title}</h5>
-                                    <a href="/user/film/${object.id}/buy" class="btn btn-vimeo btnBuyMy"
+                                    <a href="/user/movie/${object.id}/buy" class="btn btn-vimeo btnBuyMy"
                                         style="width:75%;background: linear-gradient(180deg, #fbfb25, #ffb93c, #ffaa15)">
                                         <i class="ti ti-coin" style="margin-right: 5px;"></i>Купити</a>
                                 </div>

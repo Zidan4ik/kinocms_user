@@ -184,7 +184,7 @@
     }
 </script>
 <script>
-    function requestCinemas(id) {
+    function requestCinema(id) {
         let request = new XMLHttpRequest();
         request.open("GET", `/user/cinema/${id}/data`)
         request.send();
@@ -205,7 +205,7 @@
 
     window.addEventListener('DOMContentLoaded', function () {
         const id = document.getElementById("id_").value;
-        requestCinemas(id);
+        requestCinema(id);
     });
 </script>
 </body>
