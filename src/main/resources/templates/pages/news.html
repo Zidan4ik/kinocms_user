@@ -80,10 +80,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script>
-    function renderShares(shares) {
+    function render(shares) {
         const sharesElement = document.getElementById("shares_");
         shares.forEach(function (element) {
-            sharesElement.insertAdjacentHTML('beforeend', getShareBlock(element));
+            sharesElement.insertAdjacentHTML('beforeend', getBlock(element));
         });
     }
 
@@ -94,50 +94,64 @@
     `).join('');
     }
 
-    function getShareBlock(share) {
-        let marks = getMarkBlocks(share.marks);
+    function getBlock(object) {
+        let marks = getMarkBlocks(object.marks);
         return `<div class="col">
 <div class="card h-100">
                                     <div class="card-header">
-                                    <img src="${share.pathToImage !== '' ? share.pathToImage :
+                                    <img src="${object.pathToImage !== '' ? object.pathToImage :
             'https://cdn.vectorstock.com/i/500p/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg'}"
                                          class="card-img-top" alt="error" style="border-radius: 15px;height:200px;">
 </div>
                                     <div class="card-body">
-                                        <h5 class="card-title"
-                                            style="width: 100%;">
-                                            <a class="shareText"
-                                             href="/user/share/${share.id}" style="color: #007bff;border-bottom: solid 1px #00acee;">${share.title}</a></h5>
+                                        <h5 class="card-title" style="width: 100%;"
+                                        style="color: black;"
+                                            >${object.title}</h5>
                                         <div class="col-auto badge rounded-pill"
                                                  style="background: linear-gradient(180deg, #4f575f, #2f4762, #042852);
-                                             font-size: small;">${share.dateOfCreation}
+                                             font-size: small;">${object.dateOfCreation}
                                             </div>
                                         <div class="mt-1">
                                             ${marks}
                                         </div>
-                                        <p class="card-text mt-1">${share.description}</p>
+                                        <p class="card-text mt-1">${object.description}</p>
                                     </div>
                                 </div>
 </div>`;
     }
 
-    function requestShares() {
+    function requestData() {
         let request = new XMLHttpRequest();
-        request.open("GET", "/user/shares/data")
+        request.open("GET", "/user/news/data")
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);
             console.log(data);
-            renderShares(data);
+            render(data);
         });
     }
 
     window.addEventListener('DOMContentLoaded', function () {
-        requestShares();
-        if (window.location.pathname === `/user/shares`) {
-            document.getElementById("btnShares_").classList.add('active');
-        }
-    });
+        refreshStateDropMenu();
+        requestData();
+    })
+
+    function refreshStateDropMenu() {
+        var menuItems = document.querySelectorAll('.dropdown-item');
+        var mainButton = document.getElementById('dropdownMenuButton');
+        menuItems.forEach(function (item) {
+            if (window.location.pathname === item.getAttribute('href')) {
+                var newHref = item.getAttribute('href');
+                var newText = item.textContent;
+                var oldHref = mainButton.getAttribute('href');
+                var oldText = mainButton.textContent;
+                mainButton.href = newHref;
+                mainButton.textContent = newText;
+                item.href = oldHref;
+                item.textContent = oldText;
+            }
+        });
+    }
 </script>
 </body>
 </html>

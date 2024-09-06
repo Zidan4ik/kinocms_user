@@ -27,7 +27,7 @@ public class ShareController {
         return "pages/shares";
     }
 
-    @GetMapping("/shares-data")
+    @GetMapping("/shares/data")
     @ResponseBody
     public List<SharesDTO> getShares() {
         return ShareMapper.toDTOList(shareService.getAll());
