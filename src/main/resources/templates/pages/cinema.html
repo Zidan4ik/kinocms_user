@@ -38,12 +38,14 @@
                                     <img src="https://newspaperads.ads2publish.com/wp-content/uploads/2021/04/mercedes-benz-unstoppable-just-like-you-ad-times-of-india-delhi-16-04-2021.jpg"
                                          alt="error" width="100%" height="400px">
                                     <div class="mt-3">
-                                        <p class="d-flex justify-content-center" id="hallsCount_" style="font-size: x-large;"></p>
+                                        <p class="d-flex justify-content-center" id="hallsCount_"
+                                           style="font-size: x-large;"></p>
                                         <ul class="list-group" id="halls_">
                                         </ul>
                                     </div>
                                     <div class="mt-3 mb-3">
-                                        <p class="d-flex justify-content-center" style="font-size: x-large;">Дивимось сьогодні:</p>
+                                        <p class="d-flex justify-content-center" style="font-size: x-large;">Дивимось
+                                            сьогодні:</p>
                                         <ul class="list-group" id="sessions_">
                                             <li class="list-group-item">Сеанс 1</li>
                                             <li class="list-group-item">Сеанс 2</li>
@@ -54,7 +56,8 @@
                                         </ul>
                                     </div>
                                     <div class="mt-3 text-center">
-                                        <a href="/user/timetable" class="btn btn-outline-success" style="background: azure;width: 80%;">Розклад
+                                        <a href="/user/timetable" class="btn btn-outline-success"
+                                           style="background: azure;width: 80%;">Розклад
                                             сеансів</a>
                                     </div>
                                 </div>
@@ -192,7 +195,6 @@
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);
-            console.log(data);
             document.getElementById("title_").textContent = data.nameCinema;
             document.getElementById("logo_").src = data.pathToLogo;
             document.getElementById("banner_").src = data.pathToBanner;
@@ -201,13 +203,14 @@
             createConditionContainer(data.condition);
             createSlidersImage(data.galleryDTOS);
             createGroupHalls(data.hallDTOS);
-            document.getElementById("hallsCount_").textContent = "Кількість залів: "+data.hallDTOS.length;
+            document.getElementById("hallsCount_").textContent = "Кількість залів: " + data.hallDTOS.length;
         });
     }
 
     window.addEventListener('DOMContentLoaded', function () {
         const id = document.getElementById("id_").value;
         requestCinema(id);
+        requestPagesMenu();
     });
 </script>
 </body>

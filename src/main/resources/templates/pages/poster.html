@@ -126,10 +126,32 @@
                 </div>
             </div>`;
     }
+
+    function followSite(link) {
+        if (link) {
+            window.location.replace(link);
+        }
+    }
+
+    function followMoviesInfo(id) {
+        if (id) {
+            window.location.replace("/user/movie/" + id);
+        }
+    }
+
+    document.querySelectorAll(".list-group-item").forEach(function (input) {
+        input.addEventListener('click', function () {
+            const link = input.querySelector('a');
+            if (link) {
+                window.location.href = link.href;
+            }
+        });
+    });
 </script>
 <script>
     window.addEventListener("DOMContentLoaded", function () {
         requestPosterData();
+        requestPagesMenu();
         const currentPathSite = window.location.pathname;
         if (currentPathSite === '/user/poster') {
             document.getElementById("btnPosterSidebar_").classList.add("active");
@@ -144,32 +166,9 @@
         request.addEventListener("load", function () {
             if (request.status === 200) {
                 let data = JSON.parse(request.response);
-                console.log(data);
                 render(data);
             }
         });
-    }
-</script>
-<script>
-    document.querySelectorAll(".list-group-item").forEach(function (input) {
-        input.addEventListener('click', function () {
-            const link = input.querySelector('a');
-            if (link) {
-                window.location.href = link.href;
-            }
-        });
-    });
-
-    function followSite(link) {
-        if (link) {
-            window.location.replace(link);
-        }
-    }
-
-    function followMoviesInfo(id) {
-        if (id) {
-            window.location.replace("/user/movie/" + id);
-        }
     }
 </script>
 </body>

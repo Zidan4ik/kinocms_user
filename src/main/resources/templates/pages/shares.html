@@ -121,20 +121,21 @@
                                 </div>
 </div>`;
     }
-
+</script>
+<script>
     function requestShares() {
         let request = new XMLHttpRequest();
         request.open("GET", "/user/shares/data")
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);
-            console.log(data);
             renderShares(data);
         });
     }
 
     window.addEventListener('DOMContentLoaded', function () {
         requestShares();
+        requestPagesMenu();
         if (window.location.pathname === `/user/shares`) {
             document.getElementById("btnShares_").classList.add('active');
         }

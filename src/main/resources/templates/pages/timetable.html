@@ -162,7 +162,7 @@
 
 <script>
     window.addEventListener('DOMContentLoaded',function (){
-        console.log(window.location.pathname);
+        requestPagesMenu();
         if(window.location.pathname === '/user/timetable'){
             let elementBtn = document.getElementById("btnTimetable_");
             elementBtn.classList.add('active');

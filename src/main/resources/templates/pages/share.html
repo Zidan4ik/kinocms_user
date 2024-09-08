@@ -31,7 +31,7 @@
                     <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
                         <div>
                             <img id="banner_"
-                                    src="https://cdn.vectorstock.com/i/500p/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg"
+                                 src="https://cdn.vectorstock.com/i/500p/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg"
                                  alt="error" style="width: 100%; height: 300px;">
                         </div>
                         <div class="row mt-5">
@@ -80,7 +80,6 @@
 <th:block th:insert="blocks/links::scripts"></th:block>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/script.js"></script>
-
 <script>
     function renderMarks(marks) {
         const marksElement = document.getElementById("marks_");
@@ -93,14 +92,14 @@
         return `<span class="badge rounded-pill bg-glow col-auto"
               style="background: linear-gradient(180deg, #bc25fb, #811cab, #891fb4);">${mark}</span>`
     }
-
+</script>
+<script>
     function requestShare(id) {
         let request = new XMLHttpRequest();
         request.open("GET", "/user/share/" + id + "/data")
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);
-            console.log(data);
             renderMarks(data.marks);
             document.getElementById("title_").textContent = data.title;
             document.getElementById("description_").textContent = data.description;
@@ -112,7 +111,8 @@
     window.addEventListener('DOMContentLoaded', function () {
         const shareId = document.getElementById("id_").value;
         requestShare(shareId);
-    })
+        requestPagesMenu();
+    });
 </script>
 </body>
 </html>

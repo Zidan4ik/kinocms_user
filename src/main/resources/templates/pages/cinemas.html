@@ -86,17 +86,6 @@
 <script src="/script.js"></script>
 
 <script>
-    function requestCinemas() {
-        let request = new XMLHttpRequest();
-        request.open("GET", "/user/cinemas-data")
-        request.send();
-        request.addEventListener('load', function () {
-            let data = JSON.parse(request.response);
-            console.log(data);
-            renderCinema(data);
-        });
-    }
-
     function renderCinema(array) {
         let cinemasElement = document.getElementById("cinemas_");
         array.forEach(function (element) {
@@ -111,6 +100,18 @@
                 </a>
                 <span class="d-flex justify-content-center" style="font-weight: bold;color:black;">${object.nameCinema}</span>
             </div>`;
+    }
+
+</script>
+<script>
+    function requestCinemas() {
+        let request = new XMLHttpRequest();
+        request.open("GET", "/user/cinemas-data")
+        request.send();
+        request.addEventListener('load', function () {
+            let data = JSON.parse(request.response);
+            renderCinema(data);
+        });
     }
 
     window.addEventListener('DOMContentLoaded', function () {

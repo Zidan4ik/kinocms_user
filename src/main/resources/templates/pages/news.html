@@ -78,7 +78,7 @@
 
 <th:block th:insert="blocks/links::scripts"></th:block>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+<script src="/script.js"></script>
 <script>
     function render(shares) {
         const sharesElement = document.getElementById("shares_");
@@ -119,14 +119,14 @@
                                 </div>
 </div>`;
     }
-
+</script>
+<script>
     function requestData() {
         let request = new XMLHttpRequest();
         request.open("GET", "/user/news/data")
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);
-            console.log(data);
             render(data);
         });
     }
@@ -134,26 +134,7 @@
     window.addEventListener('DOMContentLoaded', function () {
         refreshStateDropMenu();
         requestData();
-    })
-
-    function refreshStateDropMenu() {
-        var menuItems = document.querySelectorAll('.dropdown-item');
-        var mainButton = document.getElementById('dropdownMenuButton');
-        menuItems.forEach(function (item) {
-            if (window.location.pathname === item.getAttribute('href')) {
-                var newHref = item.getAttribute('href');
-                var newText = item.textContent;
-                var oldHref = mainButton.getAttribute('href');
-                var oldText = mainButton.textContent;
-                mainButton.href = newHref;
-                mainButton.textContent = newText;
-                item.href = oldHref;
-                item.textContent = oldText;
-            }
-        });
-    }
+    });
 </script>
-<script src="/script.js"></script>
-
 </body>
 </html>

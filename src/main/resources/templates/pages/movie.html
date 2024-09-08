@@ -15,6 +15,7 @@
             width: 100%;
             padding-top: 56.25%; /* 16:9 Aspect Ratio */
         }
+
         .vdo-responsive-iframe {
             position: absolute;
             top: 0;
@@ -311,23 +312,7 @@
             }
         });
     });
-    function requestMovieData(id) {
-        let request = new XMLHttpRequest();
-        request.open("GET", `/user/movie/${id}/data`)
-        request.send();
-        request.addEventListener('load', function () {
-            if (request.status === 200) {
-                let data = JSON.parse(request.response);
-                console.log(data);
-                document.getElementById("trailer_").src = data.trailer;
-                document.getElementById("movieImage_").src = data.pathToImage;
-                document.getElementById("title_").value = data.title;
-                document.getElementById("description_").textContent = data.description;
-                createTableInformation(data.year, data.time, data.budget, data.genres);
-                createSlidersImage(data.galleries);
-            }
-        });
-    }
+
     function createTableInformation(year, time, budget, genres) {
         let genresLine = '';
         genres.forEach(function (element, index) {
@@ -361,24 +346,29 @@
             '    </table>' +
             '</div>';
     }
-    function createSlidersImage(galleries) {
-        let indicatorsElement = document.getElementById("indicators_");
-        let imageSlidersElement = document.getElementById("imageSliders_");
-        galleries.forEach(function (element, index) {
-            const activeClass = index === 0 ? 'active' : '';
-            indicatorsElement.insertAdjacentHTML('beforeend', `<li data-bs-target="#carouselExample"
-                 data-bs-slide-to="${index}" class="${activeClass}"></li>`);
-            imageSlidersElement.insertAdjacentHTML('beforeend', `<div class="carousel-item ${activeClass}">
-                                            <img class="d-block w-100" src="${element.pathToImage}"
-                                                 alt="error" style="max-width: max-content;height: 400px;"/>
-                                        </div>`);
-        });
-    }
 </script>
 <script>
+    function requestMovieData(id) {
+        let request = new XMLHttpRequest();
+        request.open("GET", `/user/movie/${id}/data`)
+        request.send();
+        request.addEventListener('load', function () {
+            if (request.status === 200) {
+                let data = JSON.parse(request.response);
+                document.getElementById("trailer_").src = data.trailer;
+                document.getElementById("movieImage_").src = data.pathToImage;
+                document.getElementById("title_").value = data.title;
+                document.getElementById("description_").textContent = data.description;
+                createTableInformation(data.year, data.time, data.budget, data.genres);
+                createSlidersImage(data.galleries);
+            }
+        });
+    }
+
     window.addEventListener('DOMContentLoaded', function () {
         let movieId = document.getElementById("movieId_").value;
         requestMovieData(movieId);
+        requestPagesMenu();
     });
 </script>
 </body>
