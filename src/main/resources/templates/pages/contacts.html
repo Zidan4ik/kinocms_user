@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="uk">
+<head>
+    <title>kinocms</title>
+    <th:block th:replace="blocks/links::links"/>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/libs/select2/select2.css"/>
+    <link rel="stylesheet" href="/style/icons.css"/>
+    <link rel="stylesheet" href="/styles.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <style>
+        .mapMy {
+            position: relative;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+        }
+
+        .cardMy {
+            border: 2px solid transparent;
+            background: linear-gradient(71deg, #76378b, #24182c, #040503);
+            background-clip: padding-box;
+            border-radius: 45px;
+            padding: 40px;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+
+    <!-- Layout container -->
+    <div class="layout-container">
+
+        <!-- Navbar -->
+        <div th:insert="~{blocks/navbar::navbar}"></div>
+        <!--/ Navbar -->
+        <!-- Navbar -->
+        <div th:insert="~{blocks/navbar2::navbar2}"></div>
+        <!--/ Navbar -->
+
+        <!-- Layout page -->
+        <div class="layout-page">
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+                <!-- Content -->
+                <div class="container-xxl d-flex align-items-stretch flex-grow-1 p-0">
+                    <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
+                        <div>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZij26_YR7eg2RLvuF7sAPbXq1iRj3n_3f7Q&s"
+                                 alt="error" style="width: 100%; height: 300px;">
+                            <div class="row mt-3">
+                                <div class="col-9">
+                                    <h3 class="text-center" style="margin-bottom: 10px;">Контакти</h3>
+                                    <div class="row" id="contacts_">
+                                    </div>
+                                </div>
+                                <div class="col-3 mt-5">
+                                    <img src="https://i.pinimg.com/originals/2a/ea/5d/2aea5dc44c5cfab452d1c91fcaaf8037.jpg"
+                                         alt="error" style="width: 100%;height: 300px;">
+                                    <img class="mt-3"
+                                         src="https://newspaperads.ads2publish.com/wp-content/uploads/2020/10/audi-ahmedabad-the-future-is-yours-this-festive-season-bring-home-the-audi-q8-celebration-ad-toi-ahmedabad-31-10-2020.png"
+                                         alt="error" style="width: 100%;height: 300px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Content -->
+            </div>
+            <!--/ Content wrapper -->
+        </div>
+        <!--/ Layout page -->
+
+        <!-- Footer -->
+        <footer class="content-footer footer bg-footer-theme"
+                style="border-top: solid 1px #c4c4c4;padding-top: 10px;"
+                th:insert="~{blocks/footer::footer}">
+        </footer>
+        <!--/ Footer -->
+    </div>
+    <!--/ Layout container -->
+</div>
+<!--/ Layout wrapper -->
+
+<th:block th:insert="blocks/links::scripts"></th:block>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/script.js"></script>
+
+<script>
+    function renderContacts(contacts) {
+        const contactsElement = document.getElementById("contacts_");
+        contacts.forEach(function (item) {
+            contactsElement.insertAdjacentHTML('beforeend', getContactBlock(item));
+            buildMap(item);
+        });
+    }
+
+    function getContactBlock(contact) {
+        return `<div class="row mb-5 border p-3" style="margin-left: 1px;">
+                                            <div class="col-3">
+                                                <h3>${contact.title}</h3>
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="${contact.nameLogo !== null ? contact.pathToLogo :
+            'https://cdn.vectorstock.com/i/500p/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg'}"
+                                                     alt="error" width="100%" height="200px">
+                                            </div>
+                                            <div class="col-6">
+                                                <span>${contact.address}</span>
+                                            </div>
+                                            <div class="mt-3">
+                                               <div class="mapMy" id="map_${contact.id}"></div>
+                                            </div>
+                                        </div>`;
+    }
+
+    function buildMap(contact) {
+        let x = contact.length !== null ? contact.length : '30.57448800180971';
+        let y = contact.width !== null ? contact.width : '50.444088324095034';
+        let z = 13;
+        console.log('length: ', x, " ,width: ", y);
+        let map = L.map(`map_${contact.id}`).setView([x, y], z);
+        L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=r7knnkoRdlXLM7KT6Fwl', {
+            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+        }).addTo(map);
+        let markerMy = L.marker([x, y]).addTo(map);
+        markerMy.bindPopup(`<b>${contact.title}</b>`).openPopup();
+    }
+</script>
+<script>
+    function requestContacts() {
+        const request = new XMLHttpRequest();
+        request.open("GET", "/user/contacts/data")
+        request.send();
+        request.addEventListener('load', function () {
+            let data = JSON.parse(request.response);
+            console.log(data);
+            renderContacts(data);
+        });
+    }
+
+    window.addEventListener('DOMContentLoaded', function () {
+        requestPagesMenu();
+        requestContacts();
+    });
+</script>
+</body>
+</html>

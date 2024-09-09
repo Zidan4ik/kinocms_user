@@ -2,9 +2,12 @@ package com.example.kinocms_user.controller;
 
 import com.example.kinocms_user.entity.Page;
 import com.example.kinocms_user.enums.PageType;
+import com.example.kinocms_user.mapper.ContactMapper;
 import com.example.kinocms_user.mapper.PageMapper;
+import com.example.kinocms_user.model.ContactDTO;
 import com.example.kinocms_user.model.PageDTO;
 import com.example.kinocms_user.model.PageMenuDTO;
+import com.example.kinocms_user.service.ContactService;
 import com.example.kinocms_user.service.PageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,6 +22,7 @@ import java.util.Optional;
 @RequestMapping("/user")
 public class PageController {
     private final PageService pageService;
+    private final ContactService contactService;
 
     @GetMapping("/{type}")
     public ModelAndView showPage(@PathVariable PageType type) {
@@ -53,5 +57,11 @@ public class PageController {
     @ResponseBody
     public List<PageMenuDTO> getPagesMenu() {
         return PageMapper.toDTOMenuList(pageService.getAll());
+    }
+
+    @GetMapping("/contacts/data")
+    @ResponseBody
+    public List<ContactDTO> getContacts() {
+        return ContactMapper.toDTOList(contactService.getAll());
     }
 }
