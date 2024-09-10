@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="uk">
+<head>
+    <title>kinocms</title>
+    <th:block th:replace="blocks/links::links"/>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css"/>
+    <link rel="stylesheet" href="/style/icons.css"/>
+    <link rel="stylesheet" href="/styles.css"/>
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+
+    <!-- Layout container -->
+    <div class="layout-container">
+
+        <!-- Navbar -->
+        <div th:insert="~{blocks/navbar::navbar}"></div>
+        <!--/ Navbar -->
+        <!-- Navbar -->
+        <div th:insert="~{blocks/navbar2::navbar2}"></div>
+        <!--/ Navbar -->
+
+        <!-- Layout page -->
+        <div class="layout-page">
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+                <!-- Content -->
+                <div class="container-xxl d-flex align-items-stretch flex-grow-1 p-0">
+                    <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
+                        <h4 class="text-center">Сторінка користувача</h4>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label class="form-label" for="nameInput">Ім'я</label>
+                                <input class="form-control" type="text" id="nameInput">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Мова</label>
+                                <div class="row row-cols-2" style="margin-left: 1px;">
+                                    <div class="form-check mt-3">
+                                        <input name="languageRadio" class="form-check-input" type="radio" value=""
+                                               id="ukraine" checked/>
+                                        <label class="form-check-label" for="ukraine">
+                                            Український
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-3">
+                                        <input name="languageRadio" class="form-check-input" type="radio" value=""
+                                               id="english"/>
+                                        <label class="form-check-label" for="english">
+                                            Англійський
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label class="form-label" for="surnameInput">Прізвище</label>
+                                <input class="form-control" type="text" id="surnameInput">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Стать</label>
+                                <div class="row row-cols-2" style="margin-left: 1px;">
+                                    <div class="form-check mt-3">
+                                        <input name="stateRadio" class="form-check-input" type="radio" value=""
+                                               id="man" checked/>
+                                        <label class="form-check-label" for="man">
+                                            Чоловік
+                                        </label>
+                                    </div>
+                                    <div class="form-check mt-3">
+                                        <input name="stateRadio" class="form-check-input" type="radio" value=""
+                                               id="woman"/>
+                                        <label class="form-check-label" for="woman">
+                                            Жінка
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label class="form-label" for="nicknameInput">Псевдонім</label>
+                                <input class="form-control" type="text" id="nicknameInput">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label" for="phoneInput">Телефон</label>
+                                <input class="form-control" type="text" id="phoneInput">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label class="form-label" for="emailInput">Email</label>
+                                <input class="form-control" type="text" id="emailInput">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="bs-datepicker-format" class="form-label">Basic</label>
+                                <input type="text" id="bs-datepicker-format" placeholder="DD.MM.YYYY"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label class="form-label" for="addressInput">Адреса</label>
+                                <input class="form-control" type="text" id="addressInput">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="cityInput" class="form-label">Місто</label>
+                                <select class="form-select" aria-label="Default select example" id="cityInput">
+                                    <option selected>Місто</option>
+                                    <option value="kyiv">Київ</option>
+                                    <option value="lviv">Львів</option>
+                                    <option value="rivne">Рівне</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label class="form-label" for="passwordInput">Пароль</label>
+                                <input class="form-control" type="text" id="passwordInput">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label" for="passwordRepeatInput">Повторити пароль</label>
+                                <input class="form-control" type="text" id="passwordRepeatInput">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label class="form-label" for="numberCardInput">Номер карти</label>
+                                <input class="form-control" type="text" id="numberCardInput">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Content -->
+            </div>
+            <!--/ Content wrapper -->
+        </div>
+        <!--/ Layout page -->
+
+        <!-- Footer -->
+        <footer class="content-footer footer bg-footer-theme"
+                style="border-top: solid 1px #c4c4c4;padding-top: 10px;"
+                th:insert="~{blocks/footer::footer}">
+        </footer>
+        <!--/ Footer -->
+    </div>
+    <!--/ Layout container -->
+</div>
+<!--/ Layout wrapper -->
+
+<th:block th:insert="blocks/links::scripts"></th:block>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/vuexy/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="/script.js"></script>
+<script>
+    $("#bs-datepicker-format").datepicker({
+        format: "dd.mm.yyyy"
+    });
+    window.addEventListener('load',function (){
+        requestPagesMenu();
+    });
+</script>
+</body>
+</html>
