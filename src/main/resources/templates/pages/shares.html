@@ -13,6 +13,9 @@
             cursor: pointer;
         }
 
+        .sharesPage {
+            height: 286px !important;
+        }
     </style>
 </head>
 
@@ -37,9 +40,24 @@
                 <!-- Content -->
                 <div class="container-xxl d-flex align-items-stretch flex-grow-1 p-0">
                     <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
-                        <div>
-                            <img src="https://lh3.googleusercontent.com/proxy/uYyLGy2veqU6enSl5x5qXNx7vDU5uTvTJXHkD2icc5zuR86TI4kHieMFXuERfVOPcsNJVL1y-VWA4Ny4K0jCnNmYvXc5ZIeq_0HVGIBh0FzhCeUsdtE7NMI3P4m_JbmaN9zO3Sv3SvQGmJ4arPPMYpSvuBuc3ESfnoshLMyl1C2zGCtNL3Dg9cL3o6mbAaeXe1vX2_eiSlN4oiNl1UxH7zfUi2AseANje9LSS1FdrrWgztcWfjdcLec"
-                                 alt="error" style="width: 100%; height: 300px;">
+                        <div id="shareAndNewCarousel" class="carousel slide col-md-8 offset-md-2"
+                             data-bs-ride="false"
+                             style="margin-left: 0;width: 100%;">
+                            <ol class="carousel-indicators" id="indicators_">
+                            </ol>
+                            <div class="carousel-inner" id="imageSliders_"
+                                 style="height: 286px;">
+                            </div>
+                            <a class="carousel-control-prev" href="#shareAndNewCarousel" type="button"
+                               data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#shareAndNewCarousel" type="button"
+                               data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </a>
                         </div>
                         <h4 class="text-center col-9">
                             Акції і скидки
@@ -135,6 +153,7 @@
 
     window.addEventListener('DOMContentLoaded', function () {
         requestShares();
+        requestBanners();
         requestPagesMenu();
         if (window.location.pathname === `/user/shares`) {
             document.getElementById("btnShares_").classList.add('active');

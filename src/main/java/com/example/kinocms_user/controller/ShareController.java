@@ -1,9 +1,13 @@
 package com.example.kinocms_user.controller;
 
+import com.example.kinocms_user.entity.Banner;
 import com.example.kinocms_user.entity.Share;
+import com.example.kinocms_user.mapper.BannerMapper;
 import com.example.kinocms_user.mapper.ShareMapper;
+import com.example.kinocms_user.model.BannerDTO;
 import com.example.kinocms_user.model.ShareDTO;
 import com.example.kinocms_user.model.SharesDTO;
+import com.example.kinocms_user.service.BannerService;
 import com.example.kinocms_user.service.ShareService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,6 +25,7 @@ import java.util.Optional;
 @RequestMapping("/user")
 public class ShareController {
     private final ShareService shareService;
+    private final BannerService bannerService;
 
     @GetMapping("/shares")
     public String showShares() {
@@ -31,6 +36,12 @@ public class ShareController {
     @ResponseBody
     public List<SharesDTO> getShares() {
         return ShareMapper.toDTOList(shareService.getAll());
+    }
+
+    @GetMapping("/banners/data")
+    @ResponseBody
+    public List<BannerDTO> getBanners() {
+        return BannerMapper.toDTOListBanner(bannerService.getAll());
     }
 
     @GetMapping("/share/{id}")

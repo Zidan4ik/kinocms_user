@@ -20,6 +20,7 @@ function createDropMenu(pages) {
             );
         }
     });
+    menuElement.insertAdjacentHTML('afterbegin', `<li><a class="dropdown-item" href="/user/news">Новини</a></li>`)
 }
 
 function refreshStateDropMenu() {
@@ -47,8 +48,28 @@ function createSlidersImage(galleries) {
         indicatorsElement.insertAdjacentHTML('beforeend', `<li data-bs-target="#carouselExample"
                  data-bs-slide-to="${index}" class="${activeClass}"></li>`);
         imageSlidersElement.insertAdjacentHTML('beforeend', `<div class="carousel-item ${activeClass}">
-                                            <img class="d-block w-100" src="${element.pathToImage}"
+                                            <img class="d-block w-100 sharesPage" src="${element.pathToImage}"
                                                  alt="error" style="max-width: 100%;height: 400px;"/>
                                         </div>`);
+    });
+}
+
+function requestBanners() {
+    let request = new XMLHttpRequest();
+    request.open("GET", "/user/banners/data")
+    request.send();
+    request.addEventListener('load', function () {
+        let data = JSON.parse(request.response);
+        data.forEach(function (item) {
+            if (item.type === 'shareAndNew') {
+                console.log(item);
+                createSlidersImage(item.bannersImagesDTOS);
+                const myCarousel = document.getElementById('shareAndNewCarousel');
+                const carousel = new bootstrap.Carousel(myCarousel, {
+                    interval: item.rotationSpeed * 1000,
+                    ride: 'carousel'
+                });
+            }
+        });
     });
 }
