@@ -7,6 +7,7 @@ import com.example.kinocms_user.mapper.PageMapper;
 import com.example.kinocms_user.model.ContactDTO;
 import com.example.kinocms_user.model.PageDTO;
 import com.example.kinocms_user.model.PageMenuDTO;
+import com.example.kinocms_user.model.PageOfMainDTO;
 import com.example.kinocms_user.service.ContactService;
 import com.example.kinocms_user.service.PageService;
 import lombok.RequiredArgsConstructor;
@@ -63,5 +64,16 @@ public class PageController {
     @ResponseBody
     public List<ContactDTO> getContacts() {
         return ContactMapper.toDTOList(contactService.getAll());
+    }
+
+    @GetMapping("/main/data")
+    @ResponseBody
+    public PageOfMainDTO getPageOfMain() {
+        Optional<Page> mainType = pageService.getByType(PageType.main);
+        return mainType.map(PageMapper::toDTOMain).orElse(null);
+    }
+    @GetMapping("/main")
+    public String showMainPage(){
+        return "pages/main";
     }
 }

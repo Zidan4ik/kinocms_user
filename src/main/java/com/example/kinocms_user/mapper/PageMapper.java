@@ -6,6 +6,7 @@ import com.example.kinocms_user.enums.GalleriesType;
 import com.example.kinocms_user.enums.LanguageCode;
 import com.example.kinocms_user.model.PageDTO;
 import com.example.kinocms_user.model.PageMenuDTO;
+import com.example.kinocms_user.model.PageOfMainDTO;
 
 import java.util.List;
 
@@ -19,29 +20,40 @@ public class PageMapper {
         dto.setNameImage2(page.getNameImage2());
         dto.setNameImage3(page.getNameImage3());
         dto.setGalleryDTOS(GalleryMapper.toDTOList(page.getGalleries(), page.getId(), GalleriesType.pages));
-        for (PageTranslation translator:page.getPageTranslations()){
-            if(translator.getLanguageCode().equals(LanguageCode.Ukr)){
+        for (PageTranslation translator : page.getPageTranslations()) {
+            if (translator.getLanguageCode().equals(LanguageCode.Ukr)) {
                 dto.setTitle(translator.getTitle());
                 dto.setDescription(translator.getDescription());
             }
         }
         return dto;
     }
-    private static PageMenuDTO toDTOMenu(Page page){
+
+    private static PageMenuDTO toDTOMenu(Page page) {
         PageMenuDTO dto = new PageMenuDTO();
         dto.setId(page.getId());
         dto.setType(page.getType());
-        for (PageTranslation p: page.getPageTranslations()){
-            if(p.getLanguageCode().equals(LanguageCode.Ukr)){
+        for (PageTranslation p : page.getPageTranslations()) {
+            if (p.getLanguageCode().equals(LanguageCode.Ukr)) {
                 dto.setTitle(p.getTitle());
             }
         }
         return dto;
     }
 
-    public static List<PageMenuDTO> toDTOMenuList(List<Page> pages){
+    public static List<PageMenuDTO> toDTOMenuList(List<Page> pages) {
         return pages.stream()
                 .map(PageMapper::toDTOMenu)
                 .toList();
+    }
+
+    public static PageOfMainDTO toDTOMain(Page page) {
+        PageOfMainDTO dto = new PageOfMainDTO();
+        dto.setId(page.getId());
+        dto.setPhone1(page.getPhoneFirst());
+        dto.setPhone2(page.getPhoneSecond());
+        dto.setType(page.getType());
+        dto.setStatus(page.isStatus());
+        return dto;
     }
 }

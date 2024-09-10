@@ -117,6 +117,7 @@
     window.addEventListener('DOMContentLoaded', function () {
         requestCinemas();
         requestPagesMenu();
+        requestPageOfMain();
         if (window.location.pathname === `/user/cinemas`) {
             document.getElementById("btnCinemas_").classList.add('active');
         }

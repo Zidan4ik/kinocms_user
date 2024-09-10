@@ -4,6 +4,7 @@ function requestPagesMenu() {
     request.send();
     request.addEventListener('load', function () {
         let data = JSON.parse(request.response);
+        console.log(data);
         createDropMenu(data);
         refreshStateDropMenu();
     });
@@ -60,16 +61,28 @@ function requestBanners() {
     request.send();
     request.addEventListener('load', function () {
         let data = JSON.parse(request.response);
+        console.log(data);
         data.forEach(function (item) {
             if (item.type === 'shareAndNew') {
-                console.log(item);
                 createSlidersImage(item.bannersImagesDTOS);
-                const myCarousel = document.getElementById('shareAndNewCarousel');
+                const myCarousel = document.getElementById('carouselExample');
                 const carousel = new bootstrap.Carousel(myCarousel, {
                     interval: item.rotationSpeed * 1000,
                     ride: 'carousel'
                 });
             }
         });
+    });
+}
+
+function requestPageOfMain(){
+    let request = new XMLHttpRequest();
+    request.open('GET',"/user/main/data")
+    request.send();
+    request.addEventListener('load',function(){
+        let data = JSON.parse(request.response);
+        console.log(data);
+        document.getElementById("phone_1").textContent = (data.phone1 === null? 'null':data.phone1);
+        document.getElementById("phone_2").textContent = (data.phone2 === null? 'null':data.phone2);
     });
 }

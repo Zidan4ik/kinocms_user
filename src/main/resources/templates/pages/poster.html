@@ -152,6 +152,7 @@
     window.addEventListener("DOMContentLoaded", function () {
         requestPosterData();
         requestPagesMenu();
+        requestPageOfMain();
         const currentPathSite = window.location.pathname;
         if (currentPathSite === '/user/poster') {
             document.getElementById("btnPosterSidebar_").classList.add("active");

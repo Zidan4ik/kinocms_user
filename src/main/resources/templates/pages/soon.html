@@ -145,6 +145,7 @@
     window.addEventListener("DOMContentLoaded", function () {
         requestPosterData();
         requestPagesMenu();
+        requestPageOfMain();
         const currentPathSite = window.location.pathname;
         if (currentPathSite === '/user/soon') {
             document.getElementById("btnSoonSidebar_").classList.add("active");
