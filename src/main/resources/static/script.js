@@ -4,7 +4,6 @@ function requestPagesMenu() {
     request.send();
     request.addEventListener('load', function () {
         let data = JSON.parse(request.response);
-        console.log(data);
         createDropMenu(data);
         refreshStateDropMenu();
     });
@@ -41,12 +40,12 @@ function refreshStateDropMenu() {
     });
 }
 
-function createSlidersImage(galleries) {
-    let indicatorsElement = document.getElementById("indicators_");
-    let imageSlidersElement = document.getElementById("imageSliders_");
+function createSlidersImage(galleries, myCarousel) {
+    let indicatorsElement = document.getElementById(`indicators_${myCarousel.getAttribute('data-index')}`);
+    let imageSlidersElement = document.getElementById(`imageSliders_${myCarousel.getAttribute('data-index')}`);
     galleries.forEach(function (element, index) {
         const activeClass = index === 0 ? 'active' : '';
-        indicatorsElement.insertAdjacentHTML('beforeend', `<li data-bs-target="#carouselExample"
+        indicatorsElement.insertAdjacentHTML('beforeend', `<li data-bs-target="#${myCarousel.id}"
                  data-bs-slide-to="${index}" class="${activeClass}"></li>`);
         imageSlidersElement.insertAdjacentHTML('beforeend', `<div class="carousel-item ${activeClass}">
                                             <img class="d-block w-100 sharesPage" src="${element.pathToImage}"
@@ -61,28 +60,41 @@ function requestBanners() {
     request.send();
     request.addEventListener('load', function () {
         let data = JSON.parse(request.response);
-        console.log(data);
         data.forEach(function (item) {
             if (item.type === 'shareAndNew') {
-                createSlidersImage(item.bannersImagesDTOS);
                 const myCarousel = document.getElementById('carouselExample');
-                const carousel = new bootstrap.Carousel(myCarousel, {
-                    interval: item.rotationSpeed * 1000,
-                    ride: 'carousel'
-                });
+                if (myCarousel) {
+                    buildCarousel(item, myCarousel);
+                }
+            } else if (item.type === 'main') {
+                const myCarousel = document.getElementById('carouselMain');
+                if (myCarousel) {
+                    buildCarousel(item, myCarousel);
+                }
             }
         });
     });
 }
 
-function requestPageOfMain(){
+function buildCarousel(item, myCarousel) {
+    createSlidersImage(item.bannersImagesDTOS, myCarousel);
+    new bootstrap.Carousel(myCarousel, {
+        interval: item.rotationSpeed * 1000,
+        ride: 'carousel'
+    });
+}
+
+function requestPageOfMain() {
     let request = new XMLHttpRequest();
-    request.open('GET',"/user/main/data")
+    request.open('GET', "/user/main/data")
     request.send();
-    request.addEventListener('load',function(){
+    request.addEventListener('load', function () {
         let data = JSON.parse(request.response);
-        console.log(data);
-        document.getElementById("phone_1").textContent = (data.phone1 === null? 'null':data.phone1);
-        document.getElementById("phone_2").textContent = (data.phone2 === null? 'null':data.phone2);
+        document.getElementById("phone_1").textContent = (data.phone1 === null ? 'null' : data.phone1);
+        document.getElementById("phone_2").textContent = (data.phone2 === null ? 'null' : data.phone2);
+        let seoTextElement = document.getElementById("seoText_");
+        if (seoTextElement) {
+            seoTextElement.textContent = data.seoText;
+        }
     });
 }

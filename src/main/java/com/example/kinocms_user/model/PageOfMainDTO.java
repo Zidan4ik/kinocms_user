@@ -10,4 +10,5 @@ public class PageOfMainDTO {
     private String phone2;
     private Boolean status;
     private PageType type;
+    private String seoText;
 }
