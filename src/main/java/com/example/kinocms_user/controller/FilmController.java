@@ -10,6 +10,7 @@ import com.example.kinocms_user.service.FilmService;
 import com.example.kinocms_user.service.MarkService;
 import com.example.kinocms_user.service.PageTranslatorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,7 @@ public class FilmController {
     private final MarkService markService;
 
     @GetMapping("/poster")
+//    @PreAuthorize("hasAuthority('ROLE_USER')")
     public String showPosterMovies() {
         return "pages/poster";
     }

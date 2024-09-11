@@ -32,6 +32,7 @@ public class User {
     private LocalDate dateOfBirthday;
     private LocalDate dateOfRegistration;
     private boolean isSelected;
+    private String roles;
 
     @Lob
     @Column(columnDefinition = "text")
