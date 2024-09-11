@@ -1,5 +1,6 @@
 package com.example.kinocms_user.mapper;
 
+import com.example.kinocms_user.entity.CeoBlock;
 import com.example.kinocms_user.entity.Page;
 import com.example.kinocms_user.entity.PageTranslation;
 import com.example.kinocms_user.enums.GalleriesType;
@@ -54,6 +55,11 @@ public class PageMapper {
         dto.setPhone2(page.getPhoneSecond());
         dto.setType(page.getType());
         dto.setStatus(page.isStatus());
+        for(CeoBlock c:page.getCeoBlocks()){
+            if(c.getLanguageCode().equals(LanguageCode.Ukr)){
+                dto.setSeoText(c.getSeoText());
+            }
+        }
         return dto;
     }
 }
