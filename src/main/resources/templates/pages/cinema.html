@@ -89,10 +89,10 @@
                                             Фотогалерея
                                         </h4>
                                         <div id="carouselExample" class="carousel slide col-md-8 offset-md-2"
-                                             data-bs-ride="false">
-                                            <ol class="carousel-indicators" id="indicators_">
+                                             data-bs-ride="false" data-index="0">
+                                            <ol class="carousel-indicators" id="indicators_0">
                                             </ol>
-                                            <div class="carousel-inner" id="imageSliders_">
+                                            <div class="carousel-inner" id="imageSliders_0">
                                             </div>
                                             <a class="carousel-control-prev" href="#carouselExample" type="button"
                                                data-bs-slide="prev">
@@ -167,20 +167,6 @@
         });
     }
 
-    function createSlidersImage(galleries) {
-        let indicatorsElement = document.getElementById("indicators_");
-        let imageSlidersElement = document.getElementById("imageSliders_");
-        galleries.forEach(function (element, index) {
-            const activeClass = index === 0 ? 'active' : '';
-            indicatorsElement.insertAdjacentHTML('beforeend', `<li data-bs-target="#carouselExample"
-                 data-bs-slide-to="${index}" class="${activeClass}"></li>`);
-            imageSlidersElement.insertAdjacentHTML('beforeend', `<div class="carousel-item ${activeClass}">
-                                            <img class="d-block w-100" src="${element.pathToImage}"
-                                                 alt="error" style="max-width: 100%;height: 400px;"/>
-                                        </div>`);
-        });
-    }
-
     function createGroupHalls(halls) {
         const hallsElement = document.getElementById("halls_");
         halls.forEach(function (element) {
@@ -201,8 +187,8 @@
             document.getElementById("description_").value = data.description;
             renderMarks(data.marks);
             createConditionContainer(data.condition);
-            createSlidersImage(data.galleryDTOS);
             createGroupHalls(data.hallDTOS);
+            createSlidersImage(data.galleryDTOS,document.getElementById("carouselExample"));
             document.getElementById("hallsCount_").textContent = "Кількість залів: " + data.hallDTOS.length;
         });
     }

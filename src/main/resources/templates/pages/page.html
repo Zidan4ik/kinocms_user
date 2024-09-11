@@ -45,10 +45,10 @@
                                         <h4 class="text-center" id="titleSliders_">
                                         </h4>
                                         <div id="carouselExample" class="carousel slide col-md-8 offset-md-2"
-                                             data-bs-ride="false">
-                                            <ol class="carousel-indicators" id="indicators_">
+                                             data-bs-ride="false" data-index="0">
+                                            <ol class="carousel-indicators" id="indicators_0">
                                             </ol>
-                                            <div class="carousel-inner" id="imageSliders_">
+                                            <div class="carousel-inner" id="imageSliders_0">
                                             </div>
                                             <a class="carousel-control-prev" href="#carouselExample" type="button"
                                                data-bs-slide="prev">
@@ -121,7 +121,7 @@
                 'https://cdn.vectorstock.com/i/500p/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg'
                 : data.pathToImage3;
             createSpecialDescription(image1, image2, image3);
-            createSlidersImage(data.galleryDTOS);
+            createSlidersImage(data.galleryDTOS,document.getElementById("carouselExample"));
             document.getElementById("titleSliders_").textContent = data.type === 'caffe' ? 'Меню' : 'Фотогалерея';
         });
     }
