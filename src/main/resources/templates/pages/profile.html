@@ -32,23 +32,23 @@
                         <h4 class="text-center">Сторінка користувача</h4>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label class="form-label" for="nameInput">Ім'я</label>
-                                <input class="form-control" type="text" id="nameInput">
+                                <label class="form-label" for="name_">Ім'я</label>
+                                <input class="form-control" type="text" id="name_">
                             </div>
                             <div class="col-6">
                                 <label class="form-label">Мова</label>
                                 <div class="row row-cols-2" style="margin-left: 1px;">
                                     <div class="form-check mt-3">
                                         <input name="languageRadio" class="form-check-input" type="radio" value=""
-                                               id="ukraine" checked/>
-                                        <label class="form-check-label" for="ukraine">
+                                               id="ukraine_" checked/>
+                                        <label class="form-check-label" for="ukraine_">
                                             Український
                                         </label>
                                     </div>
                                     <div class="form-check mt-3">
                                         <input name="languageRadio" class="form-check-input" type="radio" value=""
-                                               id="english"/>
-                                        <label class="form-check-label" for="english">
+                                               id="english_"/>
+                                        <label class="form-check-label" for="english_">
                                             Англійський
                                         </label>
                                     </div>
@@ -57,23 +57,23 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label class="form-label" for="surnameInput">Прізвище</label>
-                                <input class="form-control" type="text" id="surnameInput">
+                                <label class="form-label" for="surname_">Прізвище</label>
+                                <input class="form-control" type="text" id="surname_">
                             </div>
                             <div class="col-6">
                                 <label class="form-label">Стать</label>
                                 <div class="row row-cols-2" style="margin-left: 1px;">
                                     <div class="form-check mt-3">
-                                        <input name="stateRadio" class="form-check-input" type="radio" value=""
-                                               id="man" checked/>
-                                        <label class="form-check-label" for="man">
+                                        <input name="stateRadio" class="form-check-input" type="radio" value="man"
+                                               id="man_" checked/>
+                                        <label class="form-check-label" for="man_">
                                             Чоловік
                                         </label>
                                     </div>
                                     <div class="form-check mt-3">
-                                        <input name="stateRadio" class="form-check-input" type="radio" value=""
-                                               id="woman"/>
-                                        <label class="form-check-label" for="woman">
+                                        <input name="stateRadio" class="form-check-input" type="radio" value="woman"
+                                               id="woman_"/>
+                                        <label class="form-check-label" for="woman_">
                                             Жінка
                                         </label>
                                     </div>
@@ -82,33 +82,33 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label class="form-label" for="nicknameInput">Псевдонім</label>
-                                <input class="form-control" type="text" id="nicknameInput">
+                                <label class="form-label" for="nickname_">Псевдонім</label>
+                                <input class="form-control" type="text" id="nickname_">
                             </div>
                             <div class="col-6">
-                                <label class="form-label" for="phoneInput">Телефон</label>
-                                <input class="form-control" type="text" id="phoneInput">
+                                <label class="form-label" for="phone_">Телефон</label>
+                                <input class="form-control" type="text" id="phone_">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label class="form-label" for="emailInput">Email</label>
-                                <input class="form-control" type="text" id="emailInput">
+                                <label class="form-label" for="email_">Email</label>
+                                <input class="form-control" type="text" id="email_">
                             </div>
                             <div class="col-6 mb-3">
-                                <label for="bs-datepicker-format" class="form-label">Basic</label>
-                                <input type="text" id="bs-datepicker-format" placeholder="DD.MM.YYYY"
+                                <label for="birthday_" class="form-label">Basic</label>
+                                <input type="text" id="birthday_" placeholder="DD.MM.YYYY"
                                        class="form-control"/>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label class="form-label" for="addressInput">Адреса</label>
-                                <input class="form-control" type="text" id="addressInput">
+                                <label class="form-label" for="address_">Адреса</label>
+                                <input class="form-control" type="text" id="address_">
                             </div>
                             <div class="col-6 mb-3">
-                                <label for="cityInput" class="form-label">Місто</label>
-                                <select class="form-select" aria-label="Default select example" id="cityInput">
+                                <label for="city_" class="form-label">Місто</label>
+                                <select class="form-select" aria-label="Default select example" id="city_">
                                     <option selected>Місто</option>
                                     <option value="kyiv">Київ</option>
                                     <option value="lviv">Львів</option>
@@ -118,20 +118,24 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label class="form-label" for="passwordInput">Пароль</label>
-                                <input class="form-control" type="text" id="passwordInput">
+                                <label class="form-label" for="password_">Пароль</label>
+                                <input class="form-control" type="text" id="password_">
                             </div>
                             <div class="col-6">
-                                <label class="form-label" for="passwordRepeatInput">Повторити пароль</label>
-                                <input class="form-control" type="text" id="passwordRepeatInput">
+                                <label class="form-label" for="passwordRepeat_">Повторити пароль</label>
+                                <input class="form-control" type="text" id="passwordRepeat_">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label class="form-label" for="numberCardInput">Номер карти</label>
-                                <input class="form-control" type="text" id="numberCardInput">
+                                <label class="form-label" for="card_">Номер карти</label>
+                                <input class="form-control" type="text" id="card_">
                             </div>
                         </div>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-secondary" id="saveUser_" style="width: 20%;">Зберегти</button>
+                        </div>
+                        <input type="hidden" id="id_">
                     </div>
                 </div>
                 <!--/ Content -->
@@ -156,12 +160,85 @@
 <script src="/vuexy/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 <script src="/script.js"></script>
 <script>
-    $("#bs-datepicker-format").datepicker({
+    document.getElementById("saveUser_").addEventListener('click', function () {
+        requestSaveUser();
+    });
+
+    $("#birthday_").datepicker({
         format: "dd.mm.yyyy"
     });
-    window.addEventListener('load',function (){
+
+    function requestProfileData() {
+        let request = new XMLHttpRequest();
+        request.open("GET", '/user/profile/data')
+        request.send();
+        request.addEventListener('load', function () {
+            let data = JSON.parse(request.response);
+            console.log(data);
+            document.getElementById("name_").value = data.name;
+            document.getElementById("nickname_").value = data.nickname;
+            document.getElementById("surname_").value = data.surname;
+            document.getElementById("email_").value = data.email;
+            document.getElementById("phone_").value = data.phone;
+            document.getElementById("birthday_").value = data.birthday;
+            document.getElementById("address_").value = data.address;
+            document.getElementById("card_").value = data.card;
+            document.getElementById("id_").value = data.id;
+
+            if (data.isMan === true) {
+                document.getElementById("man_").checked = true;
+            } else {
+                document.getElementById("woman_").checked = true;
+            }
+        });
+    }
+
+    function getFormData() {
+        let formObject = {
+            id: $("#id_").val(),
+            name: $("#name_").val(),
+            surname: $("#surname_").val(),
+            nickname: $("#nickname_").val(),
+            phone: $("#phone_").val(),
+            email: $("#email_").val(),
+            birthday: $("#birthday_").val(),
+            address: $("#address_").val(),
+            card: $("#card_").val(),
+            password: null,
+            isMan: null
+        };
+        let password = $("#password_").val();
+        let passwordRepeat = $("#passwordRepeat_").val();
+        if (password === passwordRepeat && password !== '' && passwordRepeat !== '') {
+            formObject.password = password;
+        }
+        let radioState = document.querySelector('input[name="stateRadio"]:checked');
+        if (radioState) {
+            formObject.isMan = radioState.value === 'man';
+        }
+        return formObject;
+    }
+
+    function requestSaveUser() {
+        let formData = getFormData();
+        $.ajax({
+            type: "post",
+            url: "/user/edit",
+            data: JSON.stringify(formData),
+            contentType: "application/json",
+            success: function () {
+                window.location.replace("/user/profile");
+            },
+            error: function (error) {
+                console.log("Error submitting form:", error);
+            }
+        });
+    }
+
+    window.addEventListener('load', function () {
         requestPagesMenu();
         requestPageOfMain();
+        requestProfileData();
     });
 </script>
 </body>

@@ -8,4 +8,5 @@ public interface UserService {
     Optional<User> getByEmail(String email);
 
     void save(User user);
+    Optional<User> getById(Long id);
 }

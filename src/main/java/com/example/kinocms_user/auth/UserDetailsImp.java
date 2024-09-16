@@ -1,6 +1,7 @@
 package com.example.kinocms_user.auth;
 
 import com.example.kinocms_user.entity.User;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+@Getter
 public class UserDetailsImp implements UserDetails {
     public User user;
 
