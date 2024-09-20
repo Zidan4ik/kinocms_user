@@ -3,8 +3,8 @@ package com.example.kinocms_user.service.serviceImp;
 import com.example.kinocms_user.entity.Film;
 import com.example.kinocms_user.repository.FilmRepository;
 import com.example.kinocms_user.service.FilmService;
+import com.example.kinocms_user.util.LogUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,6 +19,7 @@ public class FilmServiceImp implements FilmService {
 
     @Override
     public List<Film> findFilmsIsActive(boolean status) {
+        LogUtil.logGetAllNotification("films", "status", status);
         List<Film> films = new ArrayList<>();
         LocalDate today = LocalDate.now();
         if (status) {
@@ -35,20 +36,31 @@ public class FilmServiceImp implements FilmService {
                 }
             }
         }
+        LogUtil.logSizeInfo("films", films.size());
         return films;
     }
 
     @Override
     public List<Film> getAll() {
-        return filmRepository.findAll();
+        LogUtil.logGetAllNotification("films");
+        List<Film> films = filmRepository.findAll();
+        LogUtil.logSizeInfo("films", films.size());
+        return films;
     }
 
     @Override
     public Optional<Film> getById(Long id) {
-        return filmRepository.findById(id);
+        LogUtil.logGetNotification("film", "id", id);
+        Optional<Film> filmById = filmRepository.findById(id);
+        LogUtil.logGetInfo("Film", "id", id, filmById.isPresent());
+        return filmById;
     }
+
     @Override
-    public List<Film> getAllFilmsToday(){
-        return filmRepository.findAllByDateStartBeforeAndDateEndAfter(LocalDate.now(), LocalDate.now());
+    public List<Film> getAllFilmsToday() {
+        LogUtil.logGetAllNotification("films today");
+        List<Film> filmsToday = filmRepository.findAllByDateStartBeforeAndDateEndAfter(LocalDate.now(), LocalDate.now());
+        LogUtil.logSizeInfo("films", filmsToday.size());
+        return filmsToday;
     }
 }

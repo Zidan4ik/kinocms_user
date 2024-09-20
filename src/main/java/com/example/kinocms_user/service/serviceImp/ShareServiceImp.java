@@ -3,6 +3,7 @@ package com.example.kinocms_user.service.serviceImp;
 import com.example.kinocms_user.entity.Share;
 import com.example.kinocms_user.repository.ShareRepository;
 import com.example.kinocms_user.service.ShareService;
+import com.example.kinocms_user.util.LogUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +14,20 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ShareServiceImp implements ShareService {
     private final ShareRepository shareRepository;
+
     @Override
     public List<Share> getAll() {
-        return shareRepository.findAll();
+        LogUtil.logGetAllNotification("shares");
+        List<Share> shares = shareRepository.findAll();
+        LogUtil.logSizeInfo("shares", shares.size());
+        return shares;
     }
 
     @Override
     public Optional<Share> getById(Long id) {
-        return shareRepository.findById(id);
+        LogUtil.logGetNotification("share", "id", id);
+        Optional<Share> shareById = shareRepository.findById(id);
+        LogUtil.logGetInfo("Share", "id", id, shareById.isPresent());
+        return shareById;
     }
 }

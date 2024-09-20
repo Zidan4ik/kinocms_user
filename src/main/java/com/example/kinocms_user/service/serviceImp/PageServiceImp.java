@@ -4,6 +4,7 @@ import com.example.kinocms_user.entity.Page;
 import com.example.kinocms_user.enums.PageType;
 import com.example.kinocms_user.repository.PageRepository;
 import com.example.kinocms_user.service.PageService;
+import com.example.kinocms_user.util.LogUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,16 +18,25 @@ public class PageServiceImp implements PageService {
 
     @Override
     public List<Page> getAll() {
-        return pageRepository.findAll();
+        LogUtil.logGetAllNotification("pages");
+        List<Page> pages = pageRepository.findAll();
+        LogUtil.logSizeInfo("pages", pages.size());
+        return pages;
     }
 
     @Override
     public Optional<Page> getById(Long id) {
-        return pageRepository.findById(id);
+        LogUtil.logGetNotification("page", "id", id);
+        Optional<Page> pageById = pageRepository.findById(id);
+        LogUtil.logGetInfo("Page", "id", id, pageById.isPresent());
+        return pageById;
     }
 
     @Override
     public Optional<Page> getByType(PageType type) {
-        return pageRepository.findByType(type);
+        LogUtil.logGetNotification("page", "type", type);
+        Optional<Page> pageByType = pageRepository.findByType(type);
+        LogUtil.logGetInfo("Page", "type", type, pageByType.isPresent());
+        return pageByType;
     }
 }
