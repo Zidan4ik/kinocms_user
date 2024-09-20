@@ -18,6 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
+
     @Bean
     public UserDetailsService userDetailsService() {
         return new UserDetailsServiceImp();
@@ -26,12 +27,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/register","/user/add").permitAll()
-                        .requestMatchers("/vuexy/**").permitAll()
-                        .requestMatchers("/user/**").hasAuthority("ROLE_USER")
-                        .anyRequest().authenticated())
-                .formLogin(form -> form.loginPage("/login").permitAll().defaultSuccessUrl("/user/main",true))
-                .logout(logout-> logout.logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll())
+                .authorizeHttpRequests(
+                        auth -> auth
+                                .requestMatchers("/register", "/user/add","/user/v2").permitAll()
+                                .requestMatchers("/vuexy/**").permitAll()
+                                .requestMatchers("/user/**").hasAuthority("ROLE_USER")
+                                .anyRequest().authenticated())
+                .formLogin(
+                        form -> form
+                                .loginPage("/login").permitAll()
+                                .defaultSuccessUrl("/user/main", true))
+                .logout(
+                        logout -> logout
+                                .logoutUrl("/logout")
+                                .logoutSuccessUrl("/login?logout").permitAll())
                 .build();
     }
 
@@ -47,4 +56,5 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }
