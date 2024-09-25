@@ -17,5 +17,4 @@ public interface MarkRepository extends JpaRepository<Mark,Long> {
             "LIMIT 3",
             nativeQuery = true)
     List<Mark> getAllByFilms(@Param("filmIds") List<Long> filmIds);
-
 }

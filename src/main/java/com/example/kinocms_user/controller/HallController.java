@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequiredArgsConstructor
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HallController {
     private final HallService hallService;
     @GetMapping("/hall/{id}")
-    public String showHall(@PathVariable Long id){
-        return "pages/hall";
+    public ModelAndView showHall(@PathVariable Long id){
+        ModelAndView model = new ModelAndView("pages/hall");
+        model.addObject("id",id);
+        return model;
     }
     @GetMapping("/hall/{id}/data")
     @ResponseBody

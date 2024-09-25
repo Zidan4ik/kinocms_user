@@ -28,6 +28,7 @@ public class CinemaController {
     private final CinemaService cinemaService;
     private final HallService hallService;
     private final PageTranslatorService pageTranslatorService;
+
     @GetMapping("/cinemas")
     public String showCinemas() {
         return "pages/cinemas";

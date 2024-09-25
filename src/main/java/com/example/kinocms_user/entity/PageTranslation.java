@@ -63,6 +63,14 @@ public class PageTranslation {
         this.hall = hall;
     }
 
+    public PageTranslation(LanguageCode languageCode, PageType pageType, String title, String description, Hall hall) {
+        this.languageCode = languageCode;
+        this.pageType = pageType;
+        this.title = title;
+        this.description = description;
+        this.hall = hall;
+    }
+
     public PageTranslation(LanguageCode languageCode, PageType pageType, String title, String description, New newEntity) {
         this.languageCode = languageCode;
         this.pageType = pageType;
@@ -85,5 +93,14 @@ public class PageTranslation {
         this.title = title;
         this.description = description;
         this.page = page;
+    }
+
+    public PageTranslation(Long id, LanguageCode languageCode, PageType pageType, String title, String description, String conditions) {
+        this.id = id;
+        this.languageCode = languageCode;
+        this.pageType = pageType;
+        this.title = title;
+        this.description = description;
+        this.conditions = conditions;
     }
 }

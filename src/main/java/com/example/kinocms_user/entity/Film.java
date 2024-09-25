@@ -56,4 +56,16 @@ public class Film {
     private Set<Mark> marksList;
     @OneToMany(mappedBy = "film", cascade = CascadeType.ALL)
     private List<Gallery> galleries;
+
+    public Film(Long id, String urlCEO, String nameImage, String linkTrailer, LocalDate dateStart, LocalDate dateEnd, int year, LocalTime durationTime, BigDecimal budget) {
+        this.id = id;
+        this.urlCEO = urlCEO;
+        this.nameImage = nameImage;
+        this.linkTrailer = linkTrailer;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.year = year;
+        this.durationTime = durationTime;
+        this.budget = budget;
+    }
 }
