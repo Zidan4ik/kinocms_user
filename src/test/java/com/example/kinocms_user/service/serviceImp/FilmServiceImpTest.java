@@ -76,7 +76,6 @@ class FilmServiceImpTest {
         List<Film> films = filmService.findFilmsIsActive(expectedStatus);
         assertTrue(films.isEmpty(), "Collection should be null");
     }
-    // 123
 
     @Test
     void testFindFilms_ReturnInactiveFilms_WhenFilmIsInactive() {
@@ -90,22 +89,10 @@ class FilmServiceImpTest {
         List<Film> films = filmService.findFilmsIsActive(expectedStatus);
         assertTrue(films.isEmpty(), "Collection should be empty for inactive films");
     }
-//    @Test
-//    void testFindFilms_ReturnActiveFilms_WhenFilmIsInactive() {
-//        boolean expectedStatus = true;
-//        List<Film> expectedFilms = new ArrayList<>();
-//        Film film = new Film();
-//        film.setDateStart(LocalDate.now().minusDays(10));
-//        film.setDateEnd(LocalDate.now().minusDays(1));
-//        expectedFilms.add(film);
-//        Mockito.when(filmRepository.findAll()).thenReturn(expectedFilms);
-//        List<Film> films = filmService.findFilmsIsActive(expectedStatus);
-//        assertTrue(films.isEmpty(), "Collection should be empty for inactive films");
-//    }
 
 
     @Test
-    void getAll() {
+    void ShouldGetAllFilm() {
         Mockito.when(filmRepository.findAll()).thenReturn(loadedFilms);
         List<Film> films = filmService.getAll();
         assertNotNull(films, "Collection should be not null");
@@ -113,7 +100,7 @@ class FilmServiceImpTest {
     }
 
     @Test
-    void getById() {
+    void shouldGetFilm_ById() {
         Long expectedId = 1L;
         Film expectedFilm = loadedFilms.stream()
                 .filter(f -> f.getId().equals(expectedId))
@@ -126,7 +113,7 @@ class FilmServiceImpTest {
     }
 
     @Test
-    void getAllFilmsToday() {
+    void shouldGetAllFilms_ByToday() {
         List<Film> expectedFilms = loadedFilms.stream()
                 .filter(f -> f.getDateStart().isBefore(LocalDate.now()) && f.getDateEnd().isAfter(LocalDate.now()))
                 .toList();

@@ -53,7 +53,7 @@ class UserServiceImpTest {
     void save() {
         User user = new User(1L, "Roman", "Pravnyk", "zinda", "123456789", "roomich20031@gmail.com", "New York", "password123", "1111222233334444", LanguageCode.Ukr, true, LocalDate.of(1990, 5, 15));
         when(userRepository.save(user)).thenReturn(user);
-        when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
+        when(userRepository.findById(1L)).thenReturn(Optional.of(user));
         userService.save(user);
         Optional<User> userById = userService.getById(1L);
 
