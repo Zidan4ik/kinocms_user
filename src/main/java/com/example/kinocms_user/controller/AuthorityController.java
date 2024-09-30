@@ -11,8 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RequiredArgsConstructor
 public class AuthorityController {
     @GetMapping("/login")
-    public ModelAndView showLogin(ModelAndView model, @ModelAttribute("successMessage") String successMessage) {
-        if (successMessage != null && !successMessage.isEmpty()) {
+    public ModelAndView showLogin(ModelAndView model, @ModelAttribute(value = "successMessage") String successMessage) {
+        if (!successMessage.isEmpty()) {
             model.addObject("message", successMessage);
         }
         model.setViewName("auth/login");

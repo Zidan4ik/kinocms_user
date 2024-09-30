@@ -135,7 +135,7 @@ class PageControllerTest {
                 "40.7128,-74.0060", "jane_logo.png", new Page()
         );
 
-        when(contactService.getAll()).thenReturn(List.of(contact1,contact2));
+        when(contactService.getAll()).thenReturn(List.of(contact1, contact2));
         ResultActions response = mockMvc.perform(get("/user/contacts/data"));
         response.andExpectAll(
                 status().isOk(),
@@ -145,15 +145,17 @@ class PageControllerTest {
     }
 
     @Test
-    void shouldGetPageOfMain() throws Exception {
+    void shouldGetPageOfMain_WhenRequestIsMade() throws Exception {
         PageType expectedType = PageType.main;
         page.setPhoneFirst("0982388123");
         page.setPhoneSecond("0552323812");
         page.setCeoBlocks(
                 List.of(
-                        new CeoBlock()
+                        new CeoBlock(1L, LanguageCode.Ukr, PageType.page, "Про нас", "ключові слова 2", "опис 2"),
+                        new CeoBlock(2L, LanguageCode.Eng, PageType.main, "Головна сторінка", "ключові слова 3", "опис 3")
                 )
         );
+        page.setType(expectedType);
         when(pageService.getByType(expectedType)).thenReturn(Optional.of(page));
         ResultActions response = mockMvc.perform(get("/user/main/data", expectedType));
         response.andExpectAll(
@@ -164,6 +166,12 @@ class PageControllerTest {
     }
 
     @Test
-    void showMainPage() {
+    void shouldMainPageView_WhenRequestIsMade() throws Exception {
+        ResultActions response = mockMvc.perform(get("/user/main"));
+        response.andExpectAll(
+                        status().isOk(),
+                        view().name("pages/main")
+                )
+                .andDo(print());
     }
 }
