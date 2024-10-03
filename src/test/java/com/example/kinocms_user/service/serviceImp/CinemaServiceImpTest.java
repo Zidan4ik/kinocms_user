@@ -50,8 +50,8 @@ class CinemaServiceImpTest {
                 .orElse(null);
         Mockito.when(cinemaRepository.findById(expectedId)).thenReturn(Optional.ofNullable(expectedCinema));
         Optional<Cinema> cinemaById = cinemaService.getById(expectedId);
-        assertTrue(cinemaById.isPresent(),"User should be present");
-        assertEquals(expectedId,cinemaById.get().getId(),"Id should match");
+        assertTrue(cinemaById.isPresent(), "User should be present");
+        assertEquals(expectedId, cinemaById.get().getId(), "Id should match");
     }
 
     private List<Cinema> loadCinemas() {
