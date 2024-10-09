@@ -3,10 +3,6 @@
 <head>
     <title>kinocms</title>
     <th:block th:replace="blocks/links::links"/>
-    <link rel="stylesheet" href="/vuexy/assets/vendor/libs/select2/select2.css"/>
-    <link rel="stylesheet" href="/style/icons.css"/>
-    <link rel="stylesheet" href="/styles.css"/>
-
     <style>
         .shareText:hover {
             color: #75c7e6 !important;
@@ -95,9 +91,6 @@
 <!--/ Layout wrapper -->
 
 <th:block th:insert="blocks/links::scripts"></th:block>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/script.js"></script>
-
 <script>
     function renderShares(shares) {
         const sharesElement = document.getElementById("shares_");
@@ -126,7 +119,7 @@
                                         <h5 class="card-title"
                                             style="width: 100%;">
                                             <a class="shareText"
-                                             href="/user/share/${share.id}" style="color: #007bff;border-bottom: solid 1px #00acee;">${share.title}</a></h5>
+                                             href="/kinocms_user/user/share/${share.id}" style="color: #007bff;border-bottom: solid 1px #00acee;">${share.title}</a></h5>
                                         <div class="col-auto badge rounded-pill"
                                                  style="background: linear-gradient(180deg, #4f575f, #2f4762, #042852);
                                              font-size: small;">${share.dateOfCreation}
@@ -143,7 +136,7 @@
 <script>
     function requestShares() {
         let request = new XMLHttpRequest();
-        request.open("GET", "/user/shares/data")
+        request.open("GET", "/kinocms_user/user/shares/data")
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);
@@ -156,7 +149,7 @@
         requestBanners();
         requestPagesMenu();
         requestPageOfMain();
-        if (window.location.pathname === `/user/shares`) {
+        if (window.location.pathname === `/kinocms_user/user/shares`) {
             document.getElementById("btnShares_").classList.add('active');
         }
     });

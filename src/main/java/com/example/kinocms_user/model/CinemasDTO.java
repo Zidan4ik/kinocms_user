@@ -12,6 +12,6 @@ public class CinemasDTO {
     private String nameCinema;
     private String nameLogo;
     public String getPathToLogo(){
-        return "/uploads/cinemas/logo/"+id+"/"+nameLogo;
+        return "/kinocms_user/uploads/cinemas/logo/"+id+"/"+nameLogo;
     }
 }

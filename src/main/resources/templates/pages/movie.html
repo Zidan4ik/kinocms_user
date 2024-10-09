@@ -2,12 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="uk">
 <head>
     <title>kinocms</title>
-
     <th:block th:replace="blocks/links::links"/>
-    <link rel="stylesheet" href="/vuexy/assets/vendor/libs/select2/select2.css"/>
-    <link rel="stylesheet" href="/style/icons.css"/>
-    <link rel="stylesheet" href="/styles.css"/>
-
     <style>
         .vdo-responsive-container {
             position: relative;
@@ -297,10 +292,6 @@
 <!--/ Layout wrapper -->
 
 <th:block th:insert="blocks/links::scripts"></th:block>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/vuexy/assets/vendor/libs/select2/select2.js"></script>
-<script src="/script.js"></script>
-
 <script>
     document.querySelectorAll('input[type=checkbox]').forEach(checkbox => {
         checkbox.addEventListener('change', function () {
@@ -351,7 +342,7 @@
 <script>
     function requestMovieData(id) {
         let request = new XMLHttpRequest();
-        request.open("GET", `/user/movie/${id}/data`)
+        request.open("GET", `/kinocms_user/user/movie/${id}/data`)
         request.send();
         request.addEventListener('load', function () {
             if (request.status === 200) {

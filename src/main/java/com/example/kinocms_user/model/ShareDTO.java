@@ -17,9 +17,9 @@ public class ShareDTO {
     private String description;
     private List<String> marks;
     public String getPathToImage() {
-        return "/uploads/shares/image/" + id + "/" + nameImage;
+        return "/kinocms_user/uploads/shares/image/" + id + "/" + nameImage;
     }
     public String getPathToBanner() {
-        return "/uploads/shares/banner/" + id + "/" + nameBanner;
+        return "/kinocms_user/uploads/shares/banner/" + id + "/" + nameBanner;
     }
 }

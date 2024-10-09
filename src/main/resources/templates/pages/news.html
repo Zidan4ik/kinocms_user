@@ -3,16 +3,11 @@
 <head>
     <title>kinocms</title>
     <th:block th:replace="blocks/links::links"/>
-    <link rel="stylesheet" href="/vuexy/assets/vendor/libs/select2/select2.css"/>
-    <link rel="stylesheet" href="/style/icons.css"/>
-    <link rel="stylesheet" href="/styles.css"/>
-
-    <style>
+      <style>
         .shareText:hover {
             color: #75c7e6 !important;
             cursor: pointer;
         }
-
     </style>
 </head>
 
@@ -92,8 +87,6 @@
 <!--/ Layout wrapper -->
 
 <th:block th:insert="blocks/links::scripts"></th:block>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/script.js"></script>
 <script>
     function render(shares) {
         const sharesElement = document.getElementById("shares_");
@@ -138,7 +131,7 @@
 <script>
     function requestNews() {
         let request = new XMLHttpRequest();
-        request.open("GET", "/user/news/data")
+        request.open("GET", "/kinocms_user/user/news/data")
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);

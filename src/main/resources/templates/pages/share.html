@@ -3,9 +3,6 @@
 <head>
     <title>kinocms</title>
     <th:block th:replace="blocks/links::links"/>
-    <link rel="stylesheet" href="/vuexy/assets/vendor/libs/select2/select2.css"/>
-    <link rel="stylesheet" href="/style/icons.css"/>
-    <link rel="stylesheet" href="/styles.css"/>
 </head>
 
 <body>
@@ -78,8 +75,6 @@
 <!--/ Layout wrapper -->
 
 <th:block th:insert="blocks/links::scripts"></th:block>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/script.js"></script>
 <script>
     function renderMarks(marks) {
         const marksElement = document.getElementById("marks_");
@@ -96,7 +91,7 @@
 <script>
     function requestShare(id) {
         let request = new XMLHttpRequest();
-        request.open("GET", "/user/share/" + id + "/data")
+        request.open("GET", "/kinocms_user/user/share/" + id + "/data")
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);

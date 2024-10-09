@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-wide customizer-hide" dir="ltr" data-theme="theme-default"
-      data-assets-path="/vuexy/assets/" data-template="vertical-menu-template" data-style="light">
+      data-assets-path="/kinocms_user/vuexy/assets/" data-template="vertical-menu-template" data-style="light">
 <head>
     <meta charset="utf-8">
     <title>kinocms</title>
-    <link rel="stylesheet" href="/vuexy/assets/css/demo.css">
-    <link rel="stylesheet" href="/vuexy/assets/vendor/css/pages/page-auth.css">
-    <link rel="stylesheet" type="text/css" href="/vuexy/assets/vendor/css/rtl/core.css"
-          class="template-customizer-core-css">
-    <link rel="stylesheet" type="text/css" href="/vuexy/assets/vendor/css/rtl/theme-default.css"
-          class="template-customizer-theme-css">
-
+    <th:block th:replace="blocks/links::linksAuth"></th:block>
     <style>
         .alertMy {
             position: absolute;
@@ -96,7 +90,7 @@
                         <input type="hidden"></form>
                     <p class="text-center">
                         <span>New on our platform?</span>
-                        <a href="/register">
+                        <a href="/kinocms_user/register">
                             <span>Create an account</span>
                         </a>
                     </p>

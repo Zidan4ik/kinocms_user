@@ -15,7 +15,7 @@ public class GalleryMapper {
         dto.setNameImage(gallery.getLinkImage());
         dto.setImageType(ImageType.galleries);
         dto.setGalleriesType(GalleriesType.films);
-        dto.setPathToImage("/uploads/" + galleriesType + "/" + ImageType.galleries + "/" + id + "/" + gallery.getLinkImage());
+        dto.setPathToImage("/kinocms_user/uploads/" + galleriesType + "/" + ImageType.galleries + "/" + id + "/" + gallery.getLinkImage());
         return dto;
     }
 

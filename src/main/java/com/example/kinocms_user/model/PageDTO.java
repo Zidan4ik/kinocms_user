@@ -21,16 +21,16 @@ public class PageDTO {
     private List<GalleryDTO> galleryDTOS;
 
     public String getPathToBanner() {
-        return "/uploads/pages/banner/" + id + "/" + nameBanner;
+        return "/kinocms_user/uploads/pages/banner/" + id + "/" + nameBanner;
     }
 
     public String getPathToImage1() {
-        return "/uploads/pages/image1/" + id + "/" + nameImage1;
+        return "/kinocms_user/uploads/pages/image1/" + id + "/" + nameImage1;
     }
     public String getPathToImage2() {
-        return "/uploads/pages/image2/" + id + "/" + nameImage2;
+        return "/kinocms_user/uploads/pages/image2/" + id + "/" + nameImage2;
     }
     public String getPathToImage3() {
-        return "/uploads/pages/image3/" + id + "/" + nameImage3;
+        return "/kinocms_user/uploads/pages/image3/" + id + "/" + nameImage3;
     }
 }

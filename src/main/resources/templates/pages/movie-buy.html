@@ -2,12 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="uk">
 <head>
     <title>kinocms</title>
-
     <th:block th:replace="blocks/links::links"/>
-    <link rel="stylesheet" href="/vuexy/assets/vendor/libs/select2/select2.css"/>
-    <link rel="stylesheet" href="/style/icons.css"/>
-    <link rel="stylesheet" href="/styles.css"/>
-
     <style>
         .diagonal-block {
             margin-top: 2px;
@@ -128,9 +123,6 @@
 <!--/ Layout wrapper -->
 
 <th:block th:insert="blocks/links::scripts"></th:block>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/script.js"></script>
-
 <script>
     window.addEventListener('DOMContentLoaded', function () {
         requestPagesMenu();

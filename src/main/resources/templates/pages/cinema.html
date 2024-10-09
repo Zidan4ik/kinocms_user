@@ -3,9 +3,6 @@
 <head>
     <title>kinocms</title>
     <th:block th:replace="blocks/links::links"/>
-    <link rel="stylesheet" href="/vuexy/assets/vendor/libs/select2/select2.css"/>
-    <link rel="stylesheet" href="/style/icons.css"/>
-    <link rel="stylesheet" href="/styles.css"/>
 </head>
 
 <body>
@@ -56,7 +53,7 @@
                                         </ul>
                                     </div>
                                     <div class="mt-3 text-center">
-                                        <a href="/user/timetable" class="btn btn-outline-success"
+                                        <a href="/kinocms_user/user/timetable" class="btn btn-outline-success"
                                            style="background: azure;width: 80%;">Розклад
                                             сеансів</a>
                                     </div>
@@ -71,7 +68,7 @@
                                                  alt="error" width="50%" height="150px">
                                         </div>
                                         <div class="col-6">
-                                            <a href="/user/timetable"
+                                            <a href="/kinocms_user/user/timetable"
                                                class="btn btn-outline-success" style="background: azure;">Розклад
                                                 сеансів</a>
                                             <div class="d-flex mt-1 gap-3" id="marks_"></div>
@@ -130,9 +127,6 @@
 <!--/ Layout wrapper -->
 
 <th:block th:insert="blocks/links::scripts"></th:block>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/script.js"></script>
-
 <script>
     const badges = ['bg-primary', 'bg-facebook', 'bg-slack', 'bg-success', 'bg-warning'];
 
@@ -149,7 +143,7 @@
     }
 
     function createConditionContainer(text) {
-        const sections = text.trim().split(/\n(?=[^\n]+:)/); // Розбиває текст на заголовки і значення
+        const sections = text.trim().split(/\n(?=[^\n]+:)/);
         const container = document.getElementById('condition_');
         container.classList.add('row', 'row-cols-2');
         sections.forEach(section => {
@@ -170,14 +164,14 @@
     function createGroupHalls(halls) {
         const hallsElement = document.getElementById("halls_");
         halls.forEach(function (element) {
-            hallsElement.insertAdjacentHTML('beforeend', `<a href="/user/hall/${element.id}"><li class="list-group-item">${element.number}</li></a>`)
+            hallsElement.insertAdjacentHTML('beforeend', `<a href="/kinocms_user/user/hall/${element.id}"><li class="list-group-item">${element.number}</li></a>`)
         });
     }
 </script>
 <script>
     function requestCinema(id) {
         let request = new XMLHttpRequest();
-        request.open("GET", `/user/cinema/${id}/data`)
+        request.open("GET", `/kinocms_user/user/cinema/${id}/data`)
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);

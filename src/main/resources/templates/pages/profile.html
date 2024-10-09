@@ -3,9 +3,6 @@
 <head>
     <title>kinocms</title>
     <th:block th:replace="blocks/links::links"/>
-    <link rel="stylesheet" href="/vuexy/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css"/>
-    <link rel="stylesheet" href="/style/icons.css"/>
-    <link rel="stylesheet" href="/styles.css"/>
 </head>
 
 <body>
@@ -156,9 +153,6 @@
 <!--/ Layout wrapper -->
 
 <th:block th:insert="blocks/links::scripts"></th:block>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/vuexy/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
-<script src="/script.js"></script>
 <script>
     document.getElementById("saveUser_").addEventListener('click', function () {
         requestSaveUser();
@@ -170,11 +164,10 @@
 
     function requestProfileData() {
         let request = new XMLHttpRequest();
-        request.open("GET", '/user/profile/data')
+        request.open("GET", '/kinocms_user/user/profile/data')
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);
-            console.log(data);
             document.getElementById("name_").value = data.name;
             document.getElementById("nickname_").value = data.nickname;
             document.getElementById("surname_").value = data.surname;

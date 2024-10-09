@@ -2,12 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="uk">
 <head>
     <title>kinocms</title>
-
     <th:block th:replace="blocks/links::links"/>
-    <link rel="stylesheet" href="/vuexy/assets/vendor/libs/select2/select2.css"/>
-    <link rel="stylesheet" href="/style/icons.css"/>
-    <link rel="stylesheet" href="/styles.css"/>
-
     <style>
         .vdo-responsive-container {
             position: relative;
@@ -185,10 +180,6 @@
 <!--/ Layout wrapper -->
 
 <th:block th:insert="blocks/links::scripts"></th:block>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/vuexy/assets/vendor/libs/select2/select2.js"></script>
-<script src="/script.js"></script>
-
 <script>
     window.addEventListener('DOMContentLoaded', function () {
         requestPageOfMain();
@@ -210,7 +201,7 @@
 <script>
     function requestPosterData() {
         const request = new XMLHttpRequest();
-        request.open("GET", "/user/poster/data");
+        request.open("GET", "/kinocms_user/user/poster/data");
         request.send();
         request.addEventListener("load", function () {
             if (request.status === 200) {
@@ -235,7 +226,7 @@
 
     function requestSoonData() {
         const request = new XMLHttpRequest();
-        request.open("GET", "/user/soon/data");
+        request.open("GET", "/kinocms_user/user/soon/data");
         request.send();
         request.addEventListener("load", function () {
             if (request.status === 200) {
@@ -253,7 +244,7 @@
                                      style="width: 200px;height: 300px;">
                                 <div class="text-center mt-3">
                                  <h5 onclick="followMoviesInfo(${object.id})" class="titleMovieMy">${object.title}</h5>
-                                    <a href="/user/movie/${object.id}/buy" class="btn btn-vimeo btnBuyMy"
+                                    <a href="/kinocms_user/user/movie/${object.id}/buy" class="btn btn-vimeo btnBuyMy"
                                         style="width:75%;background: linear-gradient(180deg, #fbfb25, #ffb93c, #ffaa15)">
                                         <i class="ti ti-coin" style="margin-right: 5px;"></i>Купити</a>
                                 </div>
@@ -268,7 +259,7 @@
 
     function followMoviesInfo(id) {
         if (id) {
-            window.location.replace("/user/movie/" + id);
+            window.location.replace("/kinocms_user/user/movie/" + id);
         }
     }
 </script>

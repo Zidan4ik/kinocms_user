@@ -17,6 +17,6 @@ public class NewDTO {
     private String dateOfCreation;
     private List<String> marks;
     public String getPathToImage() {
-        return "/uploads/news/image/" + id + "/" + nameImage;
+        return "/kinocms_user/uploads/news/image/" + id + "/" + nameImage;
     }
 }

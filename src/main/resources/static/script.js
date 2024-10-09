@@ -1,6 +1,6 @@
 function requestPagesMenu() {
     let request = new XMLHttpRequest();
-    request.open("GET", "/user/pages/data")
+    request.open("GET", "/kinocms_user/user/pages/data")
     request.send();
     request.addEventListener('load', function () {
         let data = JSON.parse(request.response);
@@ -14,13 +14,13 @@ function createDropMenu(pages) {
     pages.forEach(function (item) {
         if (item.type !== 'about' && item.type !== 'main') {
             let href = (item.type === 'additional' ?
-                `/user/${item.type}/${item.id}` : `/user/${item.type}`);
+                `/kinocms_user/user/${item.type}/${item.id}` : `/kinocms_user/user/${item.type}`);
             menuElement.insertAdjacentHTML('beforeend',
                 `<li><a class="dropdown-item" href="${href}">${item.title}</a></li>`
             );
         }
     });
-    menuElement.insertAdjacentHTML('afterbegin', `<li><a class="dropdown-item" href="/user/news">Новини</a></li>`)
+    menuElement.insertAdjacentHTML('afterbegin', `<li><a class="dropdown-item" href="/kinocms_user/user/news">Новини</a></li>`)
 }
 
 function refreshStateDropMenu() {
@@ -56,7 +56,7 @@ function createSlidersImage(galleries, myCarousel) {
 
 function requestBanners() {
     let request = new XMLHttpRequest();
-    request.open("GET", "/user/banners/data")
+    request.open("GET", "/kinocms_user/user/banners/data")
     request.send();
     request.addEventListener('load', function () {
         let data = JSON.parse(request.response);
@@ -86,7 +86,7 @@ function buildCarousel(item, myCarousel) {
 
 function requestPageOfMain() {
     let request = new XMLHttpRequest();
-    request.open('GET', "/user/main/data")
+    request.open('GET', "/kinocms_user/user/main/data")
     request.send();
     request.addEventListener('load', function () {
         let data = JSON.parse(request.response);
