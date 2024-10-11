@@ -130,7 +130,7 @@
 <script>
     function requestContacts() {
         const request = new XMLHttpRequest();
-        request.open("GET", "/kinocms_user/user/contacts/data")
+        request.open("GET", "/kinocms/user/contacts/data")
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);

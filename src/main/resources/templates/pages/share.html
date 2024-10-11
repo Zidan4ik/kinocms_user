@@ -91,7 +91,7 @@
 <script>
     function requestShare(id) {
         let request = new XMLHttpRequest();
-        request.open("GET", "/kinocms_user/user/share/" + id + "/data")
+        request.open("GET", "/kinocms/user/share/" + id + "/data")
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);

@@ -11,7 +11,7 @@ public class ContactDTO {
     private String length;
     private String nameLogo;
     public String getPathToLogo() {
-        return "/kinocms_user/uploads/contacts/logo/" + id + "/" + nameLogo;
+        return "/kinocms/uploads/contacts/logo/" + id + "/" + nameLogo;
     }
 
 }

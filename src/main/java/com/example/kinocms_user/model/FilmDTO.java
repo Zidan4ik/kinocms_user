@@ -24,7 +24,7 @@ public class FilmDTO {
     private String time;
     private String trailer;
     public String getPathToImage() {
-        return "/kinocms_user/uploads/films/main-image/" + id + "/" + nameImage;
+        return "/kinocms/uploads/films/main-image/" + id + "/" + nameImage;
     }
 }
 

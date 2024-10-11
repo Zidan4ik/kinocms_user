@@ -115,7 +115,7 @@
                          style="width: 200px; height: 300px;">
                     <div class="text-center mt-3">
                         <h5 onclick="followMoviesInfo(${object.id})" class="titleMovieMy">${object.title}</h5>
-                        <a href="/kinocms_user/user/movie/${object.id}/buy" class="btn btn-vimeo btnBuyMy"
+                        <a href="/kinocms/user/movie/${object.id}/buy" class="btn btn-vimeo btnBuyMy"
                             style="width:75%;background: linear-gradient(180deg, #fbfb25, #ffb93c, #ffaa15)">
                             <i class="ti ti-coin" style="margin-right: 5px;"></i>Купити</a>
                     </div>
@@ -133,7 +133,7 @@
 
     function followMoviesInfo(id) {
         if (id) {
-            window.location.replace("/kinocms_user/user/movie/" + id);
+            window.location.replace("/kinocms/user/movie/" + id);
         }
     }
 
@@ -152,7 +152,7 @@
         requestPagesMenu();
         requestPageOfMain();
         const currentPathSite = window.location.pathname;
-        if (currentPathSite === '/kinocms_user/user/poster') {
+        if (currentPathSite === '/kinocms/user/poster') {
             document.getElementById("btnPosterSidebar_").classList.add("active");
             document.getElementById("btnPosterHeader_").classList.add("active");
         }
@@ -160,7 +160,7 @@
 
     function requestPosterData() {
         const request = new XMLHttpRequest();
-        request.open("GET", "/kinocms_user/user/poster/data");
+        request.open("GET", "/kinocms/user/poster/data");
         request.send();
         request.addEventListener("load", function () {
             if (request.status === 200) {

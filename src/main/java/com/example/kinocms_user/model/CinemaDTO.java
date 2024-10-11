@@ -24,11 +24,11 @@ public class CinemaDTO {
     private List<GalleryDTO> galleryDTOS;
 
     public String getPathToLogo() {
-        return "/kinocms_user/uploads/cinemas/logo/" + id + "/" + nameLogo;
+        return "/kinocms/uploads/cinemas/logo/" + id + "/" + nameLogo;
     }
 
     public String getPathToBanner() {
-        return "/kinocms_user/uploads/cinemas/banner/" + id + "/" + nameBanner;
+        return "/kinocms/uploads/cinemas/banner/" + id + "/" + nameBanner;
     }
 
 }

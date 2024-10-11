@@ -1,7 +1,7 @@
 <nav th:fragment="navbar" class="navbar navbar-light bg-white">
     <div class="container-fluid justify-content-center">
         <div class="col text-center">
-            <a href="/kinocms_user/user/main">
+            <a th:href="@{/user/main}">
                 <img src="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/2e427ce7-b2f7-4c9a-a79b-8c473fadcb55/bfbc3beb-7902-41e6-b139-e6110c8c7983.png"
                      alt="error" style="width: 255px; height: 75px;border-radius: 10px;">
             </a>
@@ -30,14 +30,14 @@
             </div>
         </div>
         <div class="col-auto nav-link d-flex" style="font-weight: bold">
-            <a href="/kinocms_user/user/profile" style="color: black;">
+            <a th:href="@{/user/profile}" style="color: black;">
                 <i class="tf-icons navbar-icon ti ti-user me-1 profileIcon" style="font-size: 36px"></i>
             </a>
             <div class="btn-group dropstart logoutIcon">
                 <i class="ti ti-caret-down" data-bs-toggle="dropdown" style="font-size: 36px;"
                    aria-expanded="false"></i>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/kinocms_user/logout">Вийти</a></li>
+                    <li><a class="dropdown-item" th:href="@{/logout}">Вийти</a></li>
                 </ul>
             </div>
         </div>

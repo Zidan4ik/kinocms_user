@@ -131,7 +131,7 @@
 <script>
     function requestNews() {
         let request = new XMLHttpRequest();
-        request.open("GET", "/kinocms_user/user/news/data")
+        request.open("GET", "/kinocms/user/news/data")
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);

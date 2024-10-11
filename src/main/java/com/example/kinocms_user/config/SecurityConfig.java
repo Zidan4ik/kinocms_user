@@ -29,18 +29,18 @@ public class SecurityConfig {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         auth -> auth
-                                .requestMatchers("/register", "/user/add","/user/v2").permitAll()
+                                .requestMatchers("/user/register", "/user/add").permitAll()
                                 .requestMatchers("/vuexy/**").permitAll()
                                 .requestMatchers("/user/**").hasAuthority("ROLE_USER")
                                 .anyRequest().authenticated())
                 .formLogin(
                         form -> form
-                                .loginPage("/login").permitAll()
+                                .loginPage("/user/login").permitAll()
                                 .defaultSuccessUrl("/user/main", true))
                 .logout(
                         logout -> logout
                                 .logoutUrl("/logout")
-                                .logoutSuccessUrl("/login?logout").permitAll())
+                                .logoutSuccessUrl("/user/login?logout").permitAll())
                 .build();
     }
 

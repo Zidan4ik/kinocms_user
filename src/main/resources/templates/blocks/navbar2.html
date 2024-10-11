@@ -1,18 +1,18 @@
 <nav th:fragment="navbar2" class="navbar navbar-light bg-white">
     <div class="container-fluid justify-content-center">
         <div class="btn-group" role="group" aria-label="Basic outlined example" style="width: 100%">
-            <a href="/kinocms_user/user/poster"
+            <a th:href="@{/user/poster}"
                type="button" class="btn btn-outline-secondary" id="btnPosterHeader_">Афіша</a>
-            <a href="/kinocms_user/user/timetable"
+            <a th:href="@{/user/timetable}"
                type="button" class="btn btn-outline-secondary" id="btnTimetable_">Розклад</a>
-            <a href="/kinocms_user/user/soon"
+            <a th:href="@{/user/soon}"
                type="button" class="btn btn-outline-secondary" id="btnSoonHeader_">Скоро</a>
-            <a href="/kinocms_user/user/cinemas"
+            <a th:href="@{/user/cinemas}"
                type="button" class="btn btn-outline-secondary" id="btnCinemas_">Кінотеатри</a>
-            <a href="/kinocms_user/user/shares"
+            <a th:href="@{/user/shares}"
                type="button" class="btn btn-outline-secondary" id="btnShares_">Акції</a>
             <div class="dropdown-center">
-                <a href="/kinocms_user/user/about"
+                <a th:href="@{/user/about}"
                    class="btn btn-outline-secondary dropdown-toggle borderRadiusMy" type="button"
                    id="dropdownMenuButton"
                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

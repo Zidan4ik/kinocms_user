@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-wide customizer-hide" dir="ltr" data-theme="theme-default"
-      data-assets-path="/kinocms_user/vuexy/assets/" data-template="vertical-menu-template" data-style="light">
+      th:data-assets-path="@{/vuexy/assets/}" data-template="vertical-menu-template" data-style="light">
 <head>
     <meta charset="utf-8">
     <title>kinocms</title>
@@ -93,7 +93,7 @@
                     </form>
                     <p class="text-center">
                         <span>Already have an account?</span>
-                        <a href="/kinocms_user/login">
+                        <a th:href="@{/user/login}">
                             <span>Sign in instead</span>
                         </a>
                     </p>

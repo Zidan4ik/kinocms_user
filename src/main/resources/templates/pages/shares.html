@@ -119,7 +119,7 @@
                                         <h5 class="card-title"
                                             style="width: 100%;">
                                             <a class="shareText"
-                                             href="/kinocms_user/user/share/${share.id}" style="color: #007bff;border-bottom: solid 1px #00acee;">${share.title}</a></h5>
+                                             href="/kinocms/user/share/${share.id}" style="color: #007bff;border-bottom: solid 1px #00acee;">${share.title}</a></h5>
                                         <div class="col-auto badge rounded-pill"
                                                  style="background: linear-gradient(180deg, #4f575f, #2f4762, #042852);
                                              font-size: small;">${share.dateOfCreation}
@@ -136,7 +136,7 @@
 <script>
     function requestShares() {
         let request = new XMLHttpRequest();
-        request.open("GET", "/kinocms_user/user/shares/data")
+        request.open("GET", "/kinocms/user/shares/data")
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);
@@ -149,7 +149,7 @@
         requestBanners();
         requestPagesMenu();
         requestPageOfMain();
-        if (window.location.pathname === `/kinocms_user/user/shares`) {
+        if (window.location.pathname === `/kinocms/user/shares`) {
             document.getElementById("btnShares_").classList.add('active');
         }
     });

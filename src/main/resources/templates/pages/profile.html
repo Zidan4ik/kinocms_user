@@ -164,7 +164,7 @@
 
     function requestProfileData() {
         let request = new XMLHttpRequest();
-        request.open("GET", '/kinocms_user/user/profile/data')
+        request.open("GET", '/kinocms/user/profile/data')
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);

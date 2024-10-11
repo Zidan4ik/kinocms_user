@@ -1,24 +1,24 @@
 <head th:fragment="links">
-    <link rel="stylesheet" href="/kinocms_user/vuexy/assets/vendor/css/rtl/core.css"/>
-    <link rel="stylesheet" href="/kinocms_user/vuexy/assets/vendor/css/rtl/theme-default.css"/>
-    <link rel="stylesheet" href="/kinocms_user/vuexy/assets/vendor/fonts/tabler-icons.css">
-    <link rel="stylesheet" href="/kinocms_user/vuexy/assets/vendor/libs/select2/select2.css"/>
-    <link rel="stylesheet" href="/kinocms_user/style/icons.css"/>
-    <link rel="stylesheet" href="/kinocms_user/styles.css"/>
+    <link rel="stylesheet" th:href="@{/vuexy/assets/vendor/css/rtl/core.css}"/>
+    <link rel="stylesheet" th:href="@{/vuexy/assets/vendor/css/rtl/theme-default.css}"/>
+    <link rel="stylesheet" th:href="@{/vuexy/assets/vendor/fonts/tabler-icons.css}">
+    <link rel="stylesheet" th:href="@{/vuexy/assets/vendor/libs/select2/select2.css}"/>
+    <link rel="stylesheet" th:href="@{/style/icons.css}"/>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
 </head>
 <head th:fragment="linksAuth">
-    <link rel="stylesheet" href="/kinocms_user/vuexy/assets/css/demo.css">
-    <link rel="stylesheet" href="/kinocms_user/vuexy/assets/vendor/css/pages/page-auth.css">
-    <link rel="stylesheet" type="text/css" href="/kinocms_user/vuexy/assets/vendor/css/rtl/core.css">
-    <link rel="stylesheet" type="text/css" href="/kinocms_user/vuexy/assets/vendor/css/rtl/theme-default.css">
+    <link rel="stylesheet" th:href="@{/vuexy/assets/css/demo.css}">
+    <link rel="stylesheet" th:href="@{/vuexy/assets/vendor/css/pages/page-auth.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/vuexy/assets/vendor/css/rtl/core.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/vuexy/assets/vendor/css/rtl/theme-default.css}">
 </head>
 <body th:fragment="scripts">
-<script src="/kinocms_user/vuexy/assets/vendor/js/helpers.js"></script>
-<script src="/kinocms_user/vuexy/assets/js/config.js"></script>
-<script src="/kinocms_user/vuexy/dist/js/bootstrap.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/kinocms_user/script.js"></script>
-<script src="/kinocms_user/vuexy/assets/vendor/libs/select2/select2.js"></script>
-<script src="/kinocms_user/vuexy/assets/vendor/js/dropdown-hover.js"></script>
-<script src="/kinocms_user/vuexy/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script th:src="@{/vuexy/assets/vendor/js/helpers.js}"></script>
+<script th:src="@{/vuexy/assets/js/config.js}"></script>
+<script th:src="@{/vuexy/dist/js/bootstrap.js}"></script>
+<script th:src="@{/script.js}"></script>
+<script th:src="@{/vuexy/assets/vendor/libs/select2/select2.js}"></script>
+<script th:src="@{/vuexy/assets/vendor/js/dropdown-hover.js}"></script>
+<script th:src="@{/vuexy/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js}"></script>
 </body>

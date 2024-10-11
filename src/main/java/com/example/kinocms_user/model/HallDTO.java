@@ -18,10 +18,10 @@ public class HallDTO {
     private String nameBanner;
 
     public String getPathToSchema() {
-        return "/kinocms_user/uploads/halls/schema/" + id + "/" + nameSchema;
+        return "/kinocms/uploads/halls/schema/" + id + "/" + nameSchema;
     }
 
     public String getPathToBanner() {
-        return "/kinocms_user/uploads/halls/banner/" + id + "/" + nameBanner;
+        return "/kinocms/uploads/halls/banner/" + id + "/" + nameBanner;
     }
 }

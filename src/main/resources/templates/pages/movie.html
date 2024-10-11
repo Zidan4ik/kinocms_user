@@ -342,7 +342,7 @@
 <script>
     function requestMovieData(id) {
         let request = new XMLHttpRequest();
-        request.open("GET", `/kinocms_user/user/movie/${id}/data`)
+        request.open("GET", `/kinocms/user/movie/${id}/data`)
         request.send();
         request.addEventListener('load', function () {
             if (request.status === 200) {
