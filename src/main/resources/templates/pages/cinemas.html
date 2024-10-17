@@ -46,7 +46,7 @@
                         </div>
                         <div class="row mt-5">
                             <div class="col-8">
-                                <h3 class="text-center">Наші кінотеатри</h3>
+                                <h1 class="text-center">Наші кінотеатри</h1>
                                 <div class="row row-cols-2" id="cinemas_">
                                 </div>
                             </div>
@@ -79,6 +79,8 @@
 
 <th:block th:insert="blocks/links::scripts"></th:block>
 <script>
+    const contextPath = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+
     function renderCinema(array) {
         let cinemasElement = document.getElementById("cinemas_");
         array.forEach(function (element) {
@@ -88,8 +90,8 @@
 
     function getCinema(object) {
         return `<div class="col">
-                <a href="/kinocms/user/cinema/${object.id}">
-                <img class="box-shadow" src="${object.pathToLogo}" alt="error" style="width: 100%;height: 300px;">
+                <a href="${contextPath}/user/cinema/${object.id}">
+                <img class="box-shadow" src="${contextPath}${object.pathToLogo}" alt="error" style="width: 100%;height: 300px;">
                 </a>
                 <span class="d-flex justify-content-center" style="font-weight: bold;color:black;">${object.nameCinema}</span>
             </div>`;
@@ -99,11 +101,21 @@
 <script>
     function requestCinemas() {
         let request = new XMLHttpRequest();
-        request.open("GET", "/kinocms/user/cinemas-data")
+        request.open("GET", contextPath + "/user/cinemas-data")
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);
-            renderCinema(data);
+            console.log(data);
+            if (Array.isArray(data) && data.length === 0) {
+                let paragraphElement = document.createElement("h3");
+                paragraphElement.style.fontFamily = "cursive";
+                paragraphElement.style.letterSpacing = "5px";
+                paragraphElement.style.width = "auto";
+                paragraphElement.textContent = "Відсутня інформація про кінотеатрів";
+                document.getElementById("cinemas_").appendChild(paragraphElement);
+            } else {
+                renderCinema(data);
+            }
         });
     }
 
@@ -111,7 +123,7 @@
         requestCinemas();
         requestPagesMenu();
         requestPageOfMain();
-        if (window.location.pathname === `/kinocms/user/cinemas`) {
+        if (window.location.pathname === `${contextPath}/user/cinemas`) {
             document.getElementById("btnCinemas_").classList.add('active');
         }
     });

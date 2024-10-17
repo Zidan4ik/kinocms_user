@@ -30,7 +30,7 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <label class="form-label" for="name_">Ім'я</label>
-                                <input class="form-control" type="text" id="name_">
+                                <input class="form-control" type="text" id="name_" placeholder="dmytro">
                             </div>
                             <div class="col-6">
                                 <label class="form-label">Мова</label>
@@ -55,7 +55,7 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <label class="form-label" for="surname_">Прізвище</label>
-                                <input class="form-control" type="text" id="surname_">
+                                <input class="form-control" type="text" id="surname_" placeholder="manchester">
                             </div>
                             <div class="col-6">
                                 <label class="form-label">Стать</label>
@@ -80,17 +80,17 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <label class="form-label" for="nickname_">Псевдонім</label>
-                                <input class="form-control" type="text" id="nickname_">
+                                <input class="form-control" type="text" id="nickname_" placeholder="manchester007">
                             </div>
                             <div class="col-6">
                                 <label class="form-label" for="phone_">Телефон</label>
-                                <input class="form-control" type="text" id="phone_">
+                                <input class="form-control" type="text" id="phone_" placeholder="+38 (067) 123-45-67">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
                                 <label class="form-label" for="email_">Email</label>
-                                <input class="form-control" type="text" id="email_">
+                                <input class="form-control" type="text" id="email_" placeholder="manchester007@gmail.com">
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="birthday_" class="form-label">Basic</label>
@@ -101,7 +101,7 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <label class="form-label" for="address_">Адреса</label>
-                                <input class="form-control" type="text" id="address_">
+                                <input class="form-control" type="text" id="address_" placeholder="striyskiy 2/2b">
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="city_" class="form-label">Місто</label>
@@ -116,17 +116,17 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <label class="form-label" for="password_">Пароль</label>
-                                <input class="form-control" type="text" id="password_">
+                                <input class="form-control" type="text" id="password_" placeholder="********">
                             </div>
                             <div class="col-6">
                                 <label class="form-label" for="passwordRepeat_">Повторити пароль</label>
-                                <input class="form-control" type="text" id="passwordRepeat_">
+                                <input class="form-control" type="text" id="passwordRepeat_" placeholder="********">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
                                 <label class="form-label" for="card_">Номер карти</label>
-                                <input class="form-control" type="text" id="card_">
+                                <input class="form-control" type="text" id="card_" placeholder="1234 5678 9012 3456">
                             </div>
                         </div>
                         <div class="d-flex justify-content-center">
@@ -154,6 +154,7 @@
 
 <th:block th:insert="blocks/links::scripts"></th:block>
 <script>
+    const contextPath = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
     document.getElementById("saveUser_").addEventListener('click', function () {
         requestSaveUser();
     });
@@ -164,7 +165,7 @@
 
     function requestProfileData() {
         let request = new XMLHttpRequest();
-        request.open("GET", '/kinocms/user/profile/data')
+        request.open("GET", contextPath + '/user/profile/data')
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);
@@ -216,11 +217,11 @@
         let formData = getFormData();
         $.ajax({
             type: "post",
-            url: "/user/edit",
+            url: contextPath + "/user/edit",
             data: JSON.stringify(formData),
             contentType: "application/json",
             success: function () {
-                window.location.replace("/user/profile");
+                window.location.replace(contextPath + "/user/profile");
             },
             error: function (error) {
                 console.log("Error submitting form:", error);

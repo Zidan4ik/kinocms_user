@@ -9,6 +9,6 @@ public class BannerImageDTO {
     private String text;
     private String url;
     public String getPathToImage() {
-        return "/kinocms/uploads/banner/" + id + "/" + nameImage;
+        return "/uploads/banner/" + id + "/" + nameImage;
     }
 }

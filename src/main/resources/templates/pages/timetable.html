@@ -4,10 +4,11 @@
     <title>kinocms</title>
     <th:block th:replace="blocks/links::links"/>
     <style>
-        .table th,td {
+        .table th, td {
             text-align: center;
         }
-        .buyMy:hover{
+
+        .buyMy:hover {
             color: red !important;
         }
     </style>
@@ -116,7 +117,8 @@
                                             <td>1</td>
                                             <td>145</td>
                                             <td>
-                                                <a class="buyMy" th:href="@{/user/movie/{id}/buy (id=${film.getId()})}" style="color: black">
+                                                <a class="buyMy" th:href="@{/user/movie/{id}/buy (id=${film.getId()})}"
+                                                   style="color: black">
                                                     <i class="ti ti-premium-rights"></i>
                                                 </a>
                                             </td>
@@ -127,7 +129,7 @@
                             </div>
                             <div class="col-4">
                                 <img src="https://koblevo-info.com/wp-content/uploads/2021/07/gde-est-otdelenie-novoj-pochty-v-koblevo.jpg"
-                                alt="error" style="width: 100%; height: 500px;">
+                                     alt="error" style="width: 100%; height: 500px;">
                             </div>
                         </div>
                     </div>
@@ -152,10 +154,11 @@
 
 <th:block th:insert="blocks/links::scripts"></th:block>
 <script>
-    window.addEventListener('DOMContentLoaded',function (){
+    const contextPath = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+    window.addEventListener('DOMContentLoaded', function () {
         requestPagesMenu();
         requestPageOfMain();
-        if(window.location.pathname === '/user/timetable'){
+        if (window.location.pathname === contextPath + '/user/timetable') {
             let elementBtn = document.getElementById("btnTimetable_");
             elementBtn.classList.add('active');
         }

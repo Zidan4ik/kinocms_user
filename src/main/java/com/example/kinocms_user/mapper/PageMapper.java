@@ -15,6 +15,7 @@ public class PageMapper {
     public static PageDTO toDTO(Page page) {
         PageDTO dto = new PageDTO();
         dto.setId(page.getId());
+        dto.setStatus(page.isStatus());
         dto.setType(page.getType().toString());
         dto.setNameBanner(page.getNameBanner());
         dto.setNameImage1(page.getNameImage1());

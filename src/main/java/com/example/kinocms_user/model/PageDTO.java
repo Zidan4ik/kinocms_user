@@ -18,19 +18,20 @@ public class PageDTO {
     private String nameImage3;
     private String nameBanner;
     private String description;
+    private boolean status;
     private List<GalleryDTO> galleryDTOS;
 
     public String getPathToBanner() {
-        return "/kinocms/uploads/pages/banner/" + id + "/" + nameBanner;
+        return "/uploads/pages/banner/" + id + "/" + nameBanner;
     }
 
     public String getPathToImage1() {
-        return "/kinocms/uploads/pages/image1/" + id + "/" + nameImage1;
+        return "/uploads/pages/image1/" + id + "/" + nameImage1;
     }
     public String getPathToImage2() {
-        return "/kinocms/uploads/pages/image2/" + id + "/" + nameImage2;
+        return "/uploads/pages/image2/" + id + "/" + nameImage2;
     }
     public String getPathToImage3() {
-        return "/kinocms/uploads/pages/image3/" + id + "/" + nameImage3;
+        return "/uploads/pages/image3/" + id + "/" + nameImage3;
     }
 }

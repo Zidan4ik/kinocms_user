@@ -55,9 +55,9 @@
                                 <span class="visually-hidden">Next</span>
                             </a>
                         </div>
-                        <h4 class="text-center col-9">
+                        <h1 class="text-center col-9">
                             Акції і скидки
-                        </h4>
+                        </h1>
                         <div class="row">
                             <div class="col-9">
                                 <div class="row row-cols-1 row-cols-md-3 g-3" id="shares_">
@@ -92,6 +92,8 @@
 
 <th:block th:insert="blocks/links::scripts"></th:block>
 <script>
+    const contextPath = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+
     function renderShares(shares) {
         const sharesElement = document.getElementById("shares_");
         shares.forEach(function (element) {
@@ -111,7 +113,7 @@
         return `<div class="col">
 <div class="card h-100">
                                     <div class="card-header">
-                                    <img src="${share.pathToImage !== '' ? share.pathToImage :
+                                    <img src="${share.pathToImage !== '' ? contextPath + share.pathToImage :
             'https://cdn.vectorstock.com/i/500p/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg'}"
                                          class="card-img-top" alt="error" style="border-radius: 15px;height:200px;">
 </div>
@@ -119,7 +121,7 @@
                                         <h5 class="card-title"
                                             style="width: 100%;">
                                             <a class="shareText"
-                                             href="/kinocms/user/share/${share.id}" style="color: #007bff;border-bottom: solid 1px #00acee;">${share.title}</a></h5>
+                                             href="${contextPath}/user/share/${share.id}" style="color: #007bff;border-bottom: solid 1px #00acee;">${share.title}</a></h5>
                                         <div class="col-auto badge rounded-pill"
                                                  style="background: linear-gradient(180deg, #4f575f, #2f4762, #042852);
                                              font-size: small;">${share.dateOfCreation}
@@ -136,11 +138,20 @@
 <script>
     function requestShares() {
         let request = new XMLHttpRequest();
-        request.open("GET", "/kinocms/user/shares/data")
+        request.open("GET", contextPath + "/user/shares/data")
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);
-            renderShares(data);
+            if (Array.isArray(data) && data.length === 0) {
+                let paragraphElement = document.createElement("h3");
+                paragraphElement.style.fontFamily = "cursive";
+                paragraphElement.style.letterSpacing = "5px";
+                paragraphElement.style.width = "auto";
+                paragraphElement.textContent = "Немає доступних акцій";
+                document.getElementById("shares_").appendChild(paragraphElement);
+            } else {
+                renderShares(data);
+            }
         });
     }
 
@@ -149,7 +160,7 @@
         requestBanners();
         requestPagesMenu();
         requestPageOfMain();
-        if (window.location.pathname === `/kinocms/user/shares`) {
+        if (window.location.pathname === `${contextPath}/user/shares`) {
             document.getElementById("btnShares_").classList.add('active');
         }
     });

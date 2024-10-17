@@ -128,6 +128,7 @@
 
 <th:block th:insert="blocks/links::scripts"></th:block>
 <script>
+    const contextPath = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
     const badges = ['bg-primary', 'bg-facebook', 'bg-slack', 'bg-success', 'bg-warning'];
 
     function renderMarks(array) {
@@ -164,25 +165,25 @@
     function createGroupHalls(halls) {
         const hallsElement = document.getElementById("halls_");
         halls.forEach(function (element) {
-            hallsElement.insertAdjacentHTML('beforeend', `<a href="/kinocms/user/hall/${element.id}"><li class="list-group-item">${element.number}</li></a>`)
+            hallsElement.insertAdjacentHTML('beforeend', `<a href=${contextPath}"/user/hall/${element.id}"><li class="list-group-item">${element.number}</li></a>`)
         });
     }
 </script>
 <script>
     function requestCinema(id) {
         let request = new XMLHttpRequest();
-        request.open("GET", `/kinocms/user/cinema/${id}/data`)
+        request.open("GET", `${contextPath}/user/cinema/${id}/data`)
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);
             document.getElementById("title_").textContent = data.nameCinema;
-            document.getElementById("logo_").src = data.pathToLogo;
-            document.getElementById("banner_").src = data.pathToBanner;
+            document.getElementById("logo_").src = contextPath + data.pathToLogo;
+            document.getElementById("banner_").src = contextPath + data.pathToBanner;
             document.getElementById("description_").value = data.description;
             renderMarks(data.marks);
             createConditionContainer(data.condition);
             createGroupHalls(data.hallDTOS);
-            createSlidersImage(data.galleryDTOS,document.getElementById("carouselExample"));
+            createSlidersImage(data.galleryDTOS, document.getElementById("carouselExample"));
             document.getElementById("hallsCount_").textContent = "Кількість залів: " + data.hallDTOS.length;
         });
     }

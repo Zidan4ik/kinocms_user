@@ -11,8 +11,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.regex.Matcher;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -30,7 +28,7 @@ class AuthorityControllerTest {
 
     @Test
     void shouldReturnLoginView_WhenSuccessMessageIsNotPresent() throws Exception {
-        ResultActions response = mockMvc.perform(get("/login"));
+        ResultActions response = mockMvc.perform(get("/user/login"));
         response.andExpectAll(
                 status().isOk(),
                 view().name("auth/login")
@@ -39,7 +37,7 @@ class AuthorityControllerTest {
 
     @Test
     void shouldReturnLoginView_WhenSuccessMessageIsPresent() throws Exception {
-        ResultActions response = mockMvc.perform(get("/login")
+        ResultActions response = mockMvc.perform(get("/user/login")
                 .param("successMessage", "error"));
         response.andExpectAll(
                 status().isOk(),
@@ -50,7 +48,7 @@ class AuthorityControllerTest {
 
     @Test
     void shouldReturnRegister_WhenRequestIsMade() throws Exception {
-        ResultActions response = mockMvc.perform(get("/register")
+        ResultActions response = mockMvc.perform(get("/user/register")
                 .param("id", "1")
                 .param("name", "JohnDoe123")
                 .param("email", "johndoe@example.com")

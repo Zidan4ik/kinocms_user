@@ -42,7 +42,7 @@ public class UserMapper {
         if(dto.getIsMan() != null){
             entity.setMan(dto.getIsMan());
         }
-        if(dto.getBirthday() != null){
+        if(dto.getBirthday() != null && !dto.getBirthday().isEmpty()){
             entity.setDateOfBirthday(LocalDate.parse(dto.getBirthday(), DateTimeFormatter.ofPattern("dd.MM.yyyy")));
         }
         return entity;

@@ -10,6 +10,7 @@ import com.example.kinocms_user.service.FilmService;
 import com.example.kinocms_user.service.MarkService;
 import com.example.kinocms_user.service.PageTranslatorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,9 @@ public class FilmController {
     private final FilmService filmService;
     private final PageTranslatorService pageTranslatorService;
     private final MarkService markService;
+
+    @Value("${server.servlet.context-path}")
+    private String contextPath;
 
     @GetMapping("/poster")
     public String showPosterMovies() {
@@ -112,6 +116,7 @@ public class FilmController {
             }
         }
         model.addObject("movie", filmDTO);
+        model.addObject("contextPath",contextPath);
         return model;
     }
 }

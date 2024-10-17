@@ -23,6 +23,6 @@ public class NewController {
     @GetMapping("/news/data")
     @ResponseBody
     public List<NewDTO> getNews(){
-        return NewMapper.toDTOList(newService.getAll());
+        return NewMapper.toDTOList(newService.getAllByStatus(true));
     }
 }

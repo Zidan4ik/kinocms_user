@@ -1,6 +1,7 @@
 function requestPagesMenu() {
+    const contextPath = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
     let request = new XMLHttpRequest();
-    request.open("GET", "/kinocms/user/pages/data")
+    request.open("GET", contextPath + "/user/pages/data")
     request.send();
     request.addEventListener('load', function () {
         let data = JSON.parse(request.response);
@@ -14,13 +15,13 @@ function createDropMenu(pages) {
     pages.forEach(function (item) {
         if (item.type !== 'about' && item.type !== 'main') {
             let href = (item.type === 'additional' ?
-                `/kinocms/user/${item.type}/${item.id}` : `/kinocms/user/${item.type}`);
+                `${contextPath}/user/${item.type}/${item.id}` : `${contextPath}/user/${item.type}`);
             menuElement.insertAdjacentHTML('beforeend',
                 `<li><a class="dropdown-item" href="${href}">${item.title}</a></li>`
             );
         }
     });
-    menuElement.insertAdjacentHTML('afterbegin', `<li><a class="dropdown-item" href="/kinocms/user/news">Новини</a></li>`)
+    menuElement.insertAdjacentHTML('afterbegin', `<li><a class="dropdown-item" href="${contextPath}/user/news">Новини</a></li>`)
 }
 
 function refreshStateDropMenu() {
@@ -48,7 +49,7 @@ function createSlidersImage(galleries, myCarousel) {
         indicatorsElement.insertAdjacentHTML('beforeend', `<li data-bs-target="#${myCarousel.id}"
                  data-bs-slide-to="${index}" class="${activeClass}"></li>`);
         imageSlidersElement.insertAdjacentHTML('beforeend', `<div class="carousel-item ${activeClass}">
-                                            <img class="d-block w-100 sharesPage" src="${element.pathToImage}"
+                                            <img class="d-block w-100 sharesPage" src="${contextPath}${element.pathToImage}"
                                                  alt="error" style="max-width: 100%;height: 400px;"/>
                                         </div>`);
     });
@@ -56,7 +57,7 @@ function createSlidersImage(galleries, myCarousel) {
 
 function requestBanners() {
     let request = new XMLHttpRequest();
-    request.open("GET", "/kinocms/user/banners/data")
+    request.open("GET", contextPath + "/user/banners/data")
     request.send();
     request.addEventListener('load', function () {
         let data = JSON.parse(request.response);
@@ -86,12 +87,12 @@ function buildCarousel(item, myCarousel) {
 
 function requestPageOfMain() {
     let request = new XMLHttpRequest();
-    request.open('GET', "/kinocms/user/main/data")
+    request.open('GET', contextPath + "/user/main/data")
     request.send();
     request.addEventListener('load', function () {
         let data = JSON.parse(request.response);
-        document.getElementById("phone_1").textContent = (data.phone1 === null ? 'null' : data.phone1);
-        document.getElementById("phone_2").textContent = (data.phone2 === null ? 'null' : data.phone2);
+        document.getElementById("phone_1").textContent = (data.phone1 === null ? '+38 (0XX) XXX-XX-XX' : data.phone1);
+        document.getElementById("phone_2").textContent = (data.phone2 === null ? '+38 (0XX) XXX-XX-XX' : data.phone2);
         let seoTextElement = document.getElementById("seoText_");
         if (seoTextElement) {
             seoTextElement.textContent = data.seoText;

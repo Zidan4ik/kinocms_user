@@ -17,6 +17,6 @@ public class SharesDTO {
     private String dateOfCreation;
     private List<String> marks;
     public String getPathToImage() {
-        return "/kinocms/uploads/shares/image/" + id + "/" + nameImage;
+        return "/uploads/shares/image/" + id + "/" + nameImage;
     }
 }

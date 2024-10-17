@@ -117,8 +117,8 @@
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);
-            document.getElementById("banner_").src = data.pathToBanner;
-            document.getElementById("schema_").src = data.pathToSchema;
+            document.getElementById("banner_").src = contextPath + data.pathToBanner;
+            document.getElementById("schema_").src = contextPath + data.pathToSchema;
             document.getElementById("description_").textContent = data.description;
             document.getElementById("title_").insertAdjacentText('beforeend', data.number);
             let carouselElement = document.getElementById("slidersHall_");

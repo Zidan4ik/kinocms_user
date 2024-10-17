@@ -76,6 +76,8 @@
 
 <th:block th:insert="blocks/links::scripts"></th:block>
 <script>
+    const contextPath = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+
     function renderMarks(marks) {
         const marksElement = document.getElementById("marks_");
         marks.forEach(function (element) {
@@ -91,15 +93,15 @@
 <script>
     function requestShare(id) {
         let request = new XMLHttpRequest();
-        request.open("GET", "/kinocms/user/share/" + id + "/data")
+        request.open("GET", contextPath + "/user/share/" + id + "/data")
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);
             renderMarks(data.marks);
             document.getElementById("title_").textContent = data.title;
             document.getElementById("description_").textContent = data.description;
-            document.getElementById("logo_").src = data.pathToImage;
-            document.getElementById("banner_").src = data.pathToBanner;
+            document.getElementById("logo_").src = contextPath + data.pathToImage;
+            document.getElementById("banner_").src = contextPath + data.pathToBanner;
         });
     }
 

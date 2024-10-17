@@ -94,7 +94,9 @@
 
 <th:block th:insert="blocks/links::scripts"></th:block>
 <script>
-    function render(array) {
+    const contextPath = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+
+    function renderFilm(array) {
         let posterElement = document.getElementById("posterFilms_");
         array.forEach(function (element) {
             posterElement.insertAdjacentHTML("beforeend", getBlockFilm(element));
@@ -104,13 +106,13 @@
     function getBlockFilm(object) {
         return `<div style="width: auto">
                                 <p class="text-center mb-0">${object.dateStart} - ${object.dateEnd}</p>
-                                <img src="${object.nameImage !== null ? object.pathToImage :
+                                <img src="${object.nameImage !== null ? contextPath + object.pathToImage :
             'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'}"
                                      class="card-img-top" alt="..."
                                      style="width: 200px;height: 300px;">
                                 <div class="text-center mt-3">
                                  <h5 onclick="followMoviesInfo(${object.id})" class="titleMovieMy">${object.title}</h5>
-                                    <a href="/kinocms/user/movie/${object.id}/buy" class="btn btn-vimeo btnBuyMy"
+                                    <a href="${contextPath}/user/movie/${object.id}/buy" class="btn btn-vimeo btnBuyMy"
                                         style="width:75%;background: linear-gradient(180deg, #fbfb25, #ffb93c, #ffaa15)">
                                         <i class="ti ti-coin" style="margin-right: 5px;"></i>Купити</a>
                                 </div>
@@ -125,7 +127,7 @@
 
     function followMoviesInfo(id) {
         if (id) {
-            window.location.replace("/kinocms/user/movie/" + id);
+            window.location.replace(contextPath + "/user/movie/" + id);
         }
     }
 
@@ -144,7 +146,7 @@
         requestPagesMenu();
         requestPageOfMain();
         const currentPathSite = window.location.pathname;
-        if (currentPathSite === '/kinocms/user/soon') {
+        if (currentPathSite === contextPath + '/user/soon') {
             document.getElementById("btnSoonSidebar_").classList.add("active");
             document.getElementById("btnSoonHeader_").classList.add("active");
         }
@@ -152,12 +154,21 @@
 
     function requestSoonData() {
         const request = new XMLHttpRequest();
-        request.open("GET", "/kinocms/user/soon/data");
+        request.open("GET", contextPath + "/user/soon/data");
         request.send();
         request.addEventListener("load", function () {
             if (request.status === 200) {
                 let data = JSON.parse(request.response);
-                render(data);
+                if (Array.isArray(data) && data.length === 0) {
+                    let paragraphElement = document.createElement("h3");
+                    paragraphElement.style.fontFamily = "cursive";
+                    paragraphElement.style.letterSpacing = "5px";
+                    paragraphElement.style.width = "auto";
+                    paragraphElement.textContent = "Відсутня інформація про фільмів, що скоро відбудуться...";
+                    document.getElementById("posterFilms_").appendChild(paragraphElement);
+                } else {
+                    renderFilm(data);
+                }
             }
         });
     }

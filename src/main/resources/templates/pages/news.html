@@ -3,7 +3,7 @@
 <head>
     <title>kinocms</title>
     <th:block th:replace="blocks/links::links"/>
-      <style>
+    <style>
         .shareText:hover {
             color: #75c7e6 !important;
             cursor: pointer;
@@ -51,12 +51,12 @@
                                 <span class="visually-hidden">Next</span>
                             </a>
                         </div>
-                        <h4 class="text-center col-9">
-                            Акції і скидки
-                        </h4>
+                        <h1 class="text-center col-9">
+                            Новини
+                        </h1>
                         <div class="row">
                             <div class="col-9">
-                                <div class="row row-cols-1 row-cols-md-3 g-3" id="shares_">
+                                <div class="row row-cols-1 row-cols-md-3 g-3" id="news_">
                                 </div>
                             </div>
                             <div class="col-3">
@@ -88,8 +88,9 @@
 
 <th:block th:insert="blocks/links::scripts"></th:block>
 <script>
-    function render(shares) {
-        const sharesElement = document.getElementById("shares_");
+    const contextPath = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+    function renderNews(shares) {
+        const sharesElement = document.getElementById("news_");
         shares.forEach(function (element) {
             sharesElement.insertAdjacentHTML('beforeend', getBlock(element));
         });
@@ -107,7 +108,7 @@
         return `<div class="col">
 <div class="card h-100">
                                     <div class="card-header">
-                                    <img src="${object.pathToImage !== '' ? object.pathToImage :
+                                    <img src="${object.pathToImage !== '' ? contextPath + object.pathToImage :
             'https://cdn.vectorstock.com/i/500p/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg'}"
                                          class="card-img-top" alt="error" style="border-radius: 15px;height:200px;">
 </div>
@@ -131,11 +132,20 @@
 <script>
     function requestNews() {
         let request = new XMLHttpRequest();
-        request.open("GET", "/kinocms/user/news/data")
+        request.open("GET", contextPath + "/user/news/data")
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);
-            render(data);
+            if (Array.isArray(data) && data.length === 0) {
+                let paragraphElement = document.createElement("h3");
+                paragraphElement.style.fontFamily = "cursive";
+                paragraphElement.style.letterSpacing = "5px";
+                paragraphElement.style.width = "auto";
+                paragraphElement.textContent = "Відсутня інформація про акції";
+                document.getElementById("news_").appendChild(paragraphElement);
+            } else {
+                renderNews(data);
+            }
         });
     }
 

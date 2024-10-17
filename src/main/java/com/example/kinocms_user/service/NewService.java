@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface NewService {
     List<New> getAll();
+    List<New> getAllByStatus(boolean status);
 }

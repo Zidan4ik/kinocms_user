@@ -21,4 +21,9 @@ public class NewServiceImp implements NewService {
         LogUtil.logSizeInfo("news",news.size());
         return news;
     }
+
+    @Override
+    public List<New> getAllByStatus(boolean status) {
+        return newRepository.getAllByStatus(status);
+    }
 }

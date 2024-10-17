@@ -24,6 +24,11 @@ public class ShareServiceImp implements ShareService {
     }
 
     @Override
+    public List<Share> getAllByStatus(boolean status) {
+        return shareRepository.getAllByStatus(status);
+    }
+
+    @Override
     public Optional<Share> getById(Long id) {
         LogUtil.logGetNotification("share", "id", id);
         Optional<Share> shareById = shareRepository.findById(id);

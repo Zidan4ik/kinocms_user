@@ -340,19 +340,21 @@
     }
 </script>
 <script>
+    const contextPath = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+
     function requestMovieData(id) {
         let request = new XMLHttpRequest();
-        request.open("GET", `/kinocms/user/movie/${id}/data`)
+        request.open("GET", `${contextPath}/user/movie/${id}/data`)
         request.send();
         request.addEventListener('load', function () {
             if (request.status === 200) {
                 let data = JSON.parse(request.response);
                 document.getElementById("trailer_").src = data.trailer;
-                document.getElementById("movieImage_").src = data.pathToImage;
+                document.getElementById("movieImage_").src = contextPath + data.pathToImage;
                 document.getElementById("title_").value = data.title;
                 document.getElementById("description_").textContent = data.description;
                 createTableInformation(data.year, data.time, data.budget, data.genres);
-                createSlidersImage(data.galleries,document.getElementById("carouselExample"));
+                createSlidersImage(data.galleries, document.getElementById("carouselExample"));
             }
         });
     }

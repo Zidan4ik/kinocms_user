@@ -41,7 +41,7 @@
                         </div>
                         <div class="row mt-5">
                             <div class="col-4 text-center">
-                                <img th:src="${!movie.getNameImage().equals('')?movie.getPathToImage():
+                                <img th:src="${!movie.getNameImage().equals('')?contextPath + movie.getPathToImage():
                                 'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg'}"
                                      alt="error" style="width: 80%;height: 400px;">
                                 <img src="https://i.pinimg.com/originals/52/c5/1b/52c51bbe0ea48c66858a00816549edac.jpg"
@@ -124,6 +124,7 @@
 
 <th:block th:insert="blocks/links::scripts"></th:block>
 <script>
+    const contextPath = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
     window.addEventListener('DOMContentLoaded', function () {
         requestPagesMenu();
         requestPageOfMain();
