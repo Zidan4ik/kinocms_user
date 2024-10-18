@@ -61,21 +61,67 @@ function requestBanners() {
     request.send();
     request.addEventListener('load', function () {
         let data = JSON.parse(request.response);
+        console.log(data);
         data.forEach(function (item) {
             if (item.type === 'shareAndNew') {
                 const myCarousel = document.getElementById('carouselExample');
-                if (myCarousel) {
+                if (item.bannersImagesDTOS.length !== 0 && item.status === true && myCarousel) {
+                    document.getElementById('banner-shareAndNew-default_').remove();
                     buildCarousel(item, myCarousel);
+                } else if (item.bannersImagesDTOS.length !== 0 && item.status === false) {
+                    myCarousel.remove();
+                } else if (item.bannersImagesDTOS.length === 0) {
+                    if (myCarousel) {
+                        myCarousel.remove();
+                    }
                 }
             } else if (item.type === 'main') {
                 const myCarousel = document.getElementById('carouselMain');
-                if (myCarousel) {
+                if (item.bannersImagesDTOS.length !== 0 && item.status === true && myCarousel) {
+                    const bannerDef = document.getElementById('banner-main-default_');
+                    if (bannerDef) {
+                        bannerDef.remove();
+                    }
                     buildCarousel(item, myCarousel);
+                } else if (item.bannersImagesDTOS.length !== 0 && item.status === false) {
+                    myCarousel.remove();
+                } else if (item.bannersImagesDTOS.length === 0) {
+                    if (myCarousel) {
+                        myCarousel.remove();
+                    }
                 }
             }
         });
+        // deletingContainerCarousel(data);
     });
 }
+
+// function deletingContainerCarousel(banners) {
+//     let pathname = window.location.pathname;
+//     console.log(pathname);
+//     const myCarouselShareAndNew = document.getElementById('carouselExample');
+//     const myCarouselMain = document.getElementById('carouselMain');
+//     if (pathname.includes('main')) {
+//         console.log('enter in main block');
+//         if (banners.length === 0) {
+//             myCarouselMain.innerHTML = '';
+//             myCarouselShareAndNew.innerHTML = '';
+//         } else if (banners.length === 1) {
+//             banners.forEach(function (item) {
+//                 if (item.type === 'shareAndNew') {
+//                     myCarouselMain.innerHTML = '';
+//                 } else if (item.type === 'main') {
+//                     myCarouselShareAndNew.innerHTML = '';
+//                 }
+//             });
+//         }
+//     } else {
+//         console.log('enter in sharesAndNews block');
+//         if (banners.length === 0) {
+//             myCarouselShareAndNew.innerHTML = '';
+//         }
+//     }
+// }
 
 function buildCarousel(item, myCarousel) {
     createSlidersImage(item.bannersImagesDTOS, myCarousel);
