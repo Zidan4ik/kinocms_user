@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class NewServiceImpTest {
@@ -34,8 +34,18 @@ class NewServiceImpTest {
     void getAll() {
         when(newRepository.findAll()).thenReturn(loadedNews);
         List<New> news = newService.getAll();
-        assertNotNull(news,"Collection news should not null");
-        assertEquals(loadedNews.size(),news.size(),"Size between collections should match");
+        assertNotNull(news, "Collection news should not null");
+        assertEquals(loadedNews.size(), news.size(), "Size between collections should match");
+    }
+
+    @Test
+    void getByStatus() {
+        boolean expectedStatus = true;
+        when(newRepository.getAllByStatus(expectedStatus)).thenReturn(loadedNews);
+        List<New> news = newService.getAllByStatus(expectedStatus);
+        assertNotNull(news, "Collection news should not null");
+        assertEquals(loadedNews.size(), news.size(), "Size between collections should match");
+        verify(newRepository,times(1)).getAllByStatus(expectedStatus);
     }
 
     private List<New> loadNews() {

@@ -70,7 +70,8 @@ class ShareControllerTest {
 
     @Test
     void shouldGetShares_WhenListIsNotEmpty() throws Exception {
-        when(shareService.getAll()).thenReturn(expectedShares);
+        boolean expectedStatus = true;
+        when(shareService.getAllByStatus(expectedStatus)).thenReturn(expectedShares);
         ResultActions response = mockMvc.perform(get("/user/shares/data"));
         response.andExpectAll(
                         status().isOk(),

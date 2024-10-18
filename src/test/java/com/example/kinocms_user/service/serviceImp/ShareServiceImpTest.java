@@ -14,11 +14,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static com.example.kinocms_user.util.TestDataUtil.getElements;
 import static com.example.kinocms_user.util.TestDataUtil.loadMarks;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.util.*;
-
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ShareServiceImpTest {
@@ -54,7 +53,15 @@ class ShareServiceImpTest {
         assertTrue(shareById.isPresent(), "Share should be present");
         assertEquals(expectedId, shareById.get().getId(), "Id should match");
     }
-
+    @Test
+    void getByStatus() {
+        boolean expectedStatus = true;
+        when(shareRepository.getAllByStatus(expectedStatus)).thenReturn(loadShares());
+        List<Share> shares = shareService.getAllByStatus(expectedStatus);
+        assertNotNull(shares, "Collection shares should not null");
+        assertEquals(loadShares().size(), shares.size(), "Size between collections should match");
+        verify(shareRepository,times(1)).getAllByStatus(expectedStatus);
+    }
     private List<Share> loadShares() {
         List<Share> shares = new ArrayList<>();
         Share share1 = new Share(1L, "image1.jpg", "banner1.jpg", LocalDate.of(2022, 5, 1), true, "url1",

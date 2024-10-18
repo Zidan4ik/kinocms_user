@@ -60,7 +60,8 @@ class NewControllerTest {
                 new PageTranslation(LanguageCode.Ukr, PageType.news, "Новина 2", "Опис новини 2...", new2)
         ));
 
-        when(newService.getAll()).thenReturn(List.of(new1, new2));
+        boolean expectedStatus = true;
+        when(newService.getAllByStatus(expectedStatus)).thenReturn(List.of(new1, new2));
         ResultActions response = mockMvc.perform(get("/user/news/data"));
         response.andExpect(status().isOk())
                 .andExpectAll(
