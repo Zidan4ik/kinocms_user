@@ -39,6 +39,7 @@ public class UserMapper {
         entity.setNumberCard(dto.getCard());
         entity.setPassword(dto.getPassword());
         entity.setRoles("ROLE_USER");
+        entity.setCity(dto.getCity());
         if(dto.getIsMan() != null){
             entity.setMan(dto.getIsMan());
         }

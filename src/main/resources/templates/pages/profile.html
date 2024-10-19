@@ -106,10 +106,10 @@
                             <div class="col-6 mb-3">
                                 <label for="city_" class="form-label">Місто</label>
                                 <select class="form-select" aria-label="Default select example" id="city_">
-                                    <option selected>Місто</option>
-                                    <option value="kyiv">Київ</option>
-                                    <option value="lviv">Львів</option>
-                                    <option value="rivne">Рівне</option>
+                                    <option selected disabled>Місто</option>
+                                    <option value="Kyiv">Київ</option>
+                                    <option value="Lviv">Львів</option>
+                                    <option value="Rivne">Рівне</option>
                                 </select>
                             </div>
                         </div>
@@ -169,6 +169,7 @@
         request.send();
         request.addEventListener('load', function () {
             let data = JSON.parse(request.response);
+            console.log(data);
             document.getElementById("name_").value = data.name;
             document.getElementById("nickname_").value = data.nickname;
             document.getElementById("surname_").value = data.surname;
@@ -178,7 +179,7 @@
             document.getElementById("address_").value = data.address;
             document.getElementById("card_").value = data.card;
             document.getElementById("id_").value = data.id;
-
+            // document.getElementById("city_").value = data.id;
             if (data.isMan === true) {
                 document.getElementById("man_").checked = true;
             } else {
@@ -199,14 +200,15 @@
             address: $("#address_").val(),
             card: $("#card_").val(),
             password: null,
-            isMan: null
+            isMan: null,
+            city: $("#city_").val()
         };
         let password = $("#password_").val();
         let passwordRepeat = $("#passwordRepeat_").val();
         if (password === passwordRepeat && password !== '' && passwordRepeat !== '') {
             formObject.password = password;
         }
-        let radioState = document.querySelector('input[name="stateRadio"]:checked');
+        const radioState = document.querySelector('input[name="stateRadio"]:checked');
         if (radioState) {
             formObject.isMan = radioState.value === 'man';
         }

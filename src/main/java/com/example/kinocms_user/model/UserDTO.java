@@ -27,4 +27,5 @@ public class UserDTO {
     private String address;
     private String card;
     private Boolean isMan;
+    private String city;
 }
